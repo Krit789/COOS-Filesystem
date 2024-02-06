@@ -1,15 +1,23 @@
 # Archiver Tool
 
-## ตัวอย่างทั่วไปของคำสั่งเก็บถาวรใน Linux ได้แก่:
-tar: ใช้เพื่อสร้าง จัดการ และแยกไฟล์เก็บถาวร tar Tar ย่อมาจาก "tape archive" ซึ่งหมายถึงต้นกำเนิดของมันในฐานะเครื่องมือสำหรับการสำรองข้อมูลไปยังเทปไดรฟ์
+### ตัวอย่างทั่วไปของคำสั่งเก็บถาวรใน Linux ได้แก่:
 
-gzip: ใช้เพื่อบีบอัดและขยายขนาดไฟล์โดยใช้อัลกอริธึมการบีบอัด gzip โดยทั่วไปแล้ว Gzip จะใช้ร่วมกับ tar เพื่อสร้าง tarball ซึ่งเป็นไฟล์เก็บถาวร tar ที่ถูกบีบอัดด้วย gzip
 
-zip: ใช้เพื่อสร้าง จัดการ และแตกไฟล์ zip Zip เป็นรูปแบบไฟล์เก็บถาวรยอดนิยมที่ได้รับการสนับสนุนโดยระบบปฏิบัติการหลายระบบ
+
+
+
 
 rar: ใช้เพื่อสร้าง จัดการ และแตกไฟล์ rar Rar เป็นรูปแบบไฟล์เก็บถาวรที่เป็นกรรมสิทธิ์ซึ่งรองรับการบีบอัด การขยาย และการกู้คืนข้อผิดพลาด
 
-## Tars command
+# Tar
+tar: ใช้เพื่อสร้าง จัดการ และแยกไฟล์เก็บถาวร tar Tar ย่อมาจาก "tape archive" ซึ่งหมายถึงต้นกำเนิดของมันในฐานะเครื่องมือสำหรับการสำรองข้อมูลไปยังเทปไดรฟ์
+
+#### Syntax of the tar Command
+```shell
+tar [options] [archive-file] [file or directory to be archived]
+```
+
+### Tars command
 ```shell
 tar -cvf file.tar /path/to/folder 
 ```
@@ -44,20 +52,41 @@ tar -xjvf file.tar.bz2
 ```
 - คำสั่งนี้จะแยกเนื้อหาของไฟล์เก็บถาวร file.tar.bz2 ที่บีบอัดลงในไดเร็กทอรีปัจจุบัน
 
-## คำสั่ง option ต่างๆ ของ Tar 
-| option | คำอธิบาย          |
+
+
+#### คำสั่ง option ต่างๆ ของ Tar 
+| option | Description          |
 |-----------|---------------|
 | -c  | สร้าง archive   |
 | -x | แตกไฟล์จาก archive    |
-|-d | หาความแตกต่างระหว่างไฟล์ใน archive และในไฟล์ต้นฉบับ|
-| -u  | เพิ่มเฉพาะไฟล์ที่มีการแก้ไขเข้าไปใน tar file     |
+|-f|Specifies the filename of the archive to be created or extracted. |
 | -t  | แสดงรายการของไฟล์ที่มีทั้งหมดใน tar file       |
+| -u  | เพิ่มเฉพาะไฟล์ที่มีการแก้ไขเข้าไปใน tar file     |
 | -v  | สำหรับการแสดงข้อความ verbose ขณะทำงาน |
-|--delete| ลบไฟล์ออกจาก archive |
 | -A | เพิ่มไฟล์ใหม่เข้าไปใน archive    |
+|-z|ใช้การบีบอัด gzip เมื่อสร้างไฟล์ tar ส่งผลให้เกิดไฟล์บีบอัดที่มีนามสกุล '.tar.gz'|
+|-j|ใช้การบีบอัด bzip2 เมื่อสร้างไฟล์ tar ส่งผลให้มีไฟล์บีบอัดที่มีนามสกุล '.tar.bz2'|
+|-w|ตรวจสอบความสมบูรณ์ของไฟล์เก็บถาวร เพื่อให้แน่ใจว่าเนื้อหาจะไม่เสียหาย|
 | -r  | เพิ่มไฟล์ใหม่โดยนำเอาไปต่อท้ายรายการของไฟล์ใน archive  |
+|-d | หาความแตกต่างระหว่างไฟล์ใน archive และในไฟล์ต้นฉบับ|
+
+# Gzip
+gzip: ใช้เพื่อบีบอัดและขยายขนาดไฟล์โดยใช้อัลกอริธึมการบีบอัด gzip โดยทั่วไปแล้ว Gzip จะใช้ร่วมกับ tar เพื่อสร้าง tarball ซึ่งเป็นไฟล์เก็บถาวร tar ที่ถูกบีบอัดด้วย gzip
 
 
+#### Syntax of the gzip Command
+```shell
+ gzip [Options] [filenames]
+```
+#### คำสั่ง option ต่างๆ ของ gzip 
+| option | Description          |
+|-----------|---------------|
+| -f  | สร้าง archive   |
+| -k | แตกไฟล์จาก archive    |
+|-l | หาความแตกต่างระหว่างไฟล์ใน archive และในไฟล์ต้นฉบับ|
+| -r  | เพิ่มเฉพาะไฟล์ที่มีการแก้ไขเข้าไปใน tar file     |
+| -v  | แสดงรายการของไฟล์ที่มีทั้งหมดใน tar file       |
+| -d  | ขยายขนาดไฟล์ที่ถูกบีบอัดโดยใช้คำสั่ง gzip |
 
 ## Gzip Commands:
 
@@ -96,12 +125,24 @@ zless file.txt.gz
 ```
 - คำสั่งนี้ช่วยให้คุณดูเนื้อหาของไฟล์บีบอัดที่เรียกว่า file.txt.gz ในลักษณะที่เป็นมิตรต่อผู้ใช้มากขึ้น
 
+# Zip
+zip: ใช้เพื่อสร้าง จัดการ และแตกไฟล์ zip Zip เป็นรูปแบบไฟล์เก็บถาวรยอดนิยมที่ได้รับการสนับสนุนโดยระบบปฏิบัติการหลายระบบ
+## Syntax Zip
+```shell
+zip [options] [file_name.zip] [files_names]
+```
+### The syntax for Creating a zip file:
+```shell
+zip [file_name.zip] [file_name]
+```
+
 ## Zip Commands:
 
 ```shell
 zip archive.zip file1.txt file2.txt
 ```
 - คำสั่งนี้สร้างไฟล์ zip ใหม่ชื่อ archive.zip และเพิ่มสองไฟล์ชื่อ file1.txt และ file2.txt เข้าไป
+
 
 ```shell
 zip -r archive.zip folder/
@@ -133,6 +174,20 @@ zip -l archive.zip
 ```
 - คำสั่งนี้แสดงรายการเนื้อหาของไฟล์ archive.zip
 
+#### คำสั่ง option ต่างๆ ของ Tar 
+
+| option | Description    |
+|----|---------------|
+| -d  |ลบไฟล์ออกจากไฟล์เก็บถาวร|
+| -u| แตกไฟล์จาก archive    |
+|-m|Specifies the filename of the archive to be created or extracted. |
+| -r  | แสดงรายการของไฟล์ที่มีทั้งหมดใน tar file       |
+| -x  | เพิ่มเฉพาะไฟล์ที่มีการแก้ไขเข้าไปใน tar file     |
+| -v  |เปิดใช้งานโหมด verbose โดยละเอียดเกี่ยวกับโครงสร้างไฟล์ zip เมื่อใช้เพียงอย่างเดียว  |
+
+
+
 <!-- https://medium.com/@cuncis/linux-archiving-commands-a-beginners-guide-to-efficient-file-management-8448f7403e95 -->
-<!--https://saixiii.com/tar-linux-command/ -->
-<!-- https://maae2517.wordpress.com/2012/02/02/tar-คำสั่ง-linux-สำหรับบีบอัดข้อ/ -->
+<!-- https://www.geeksforgeeks.org/tar-command-linux-examples/ -->
+<!-- https://www.geeksforgeeks.org/gzip-command-linux/ -->
+<!-- https://www.geeksforgeeks.org/zip-command-in-linux-with-examples/ -->
