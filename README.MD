@@ -13,10 +13,10 @@ meaning the type of the filesystem.
 # สมาชิกกลุ่ม
 | รหัสนักศึกษา | ชื่อ            | นามสกุล     | รับผิดชอบหัวข้อ |
 |-----------|---------------|------------|-------------|
-| 65070030  | นาย จารุกิตติ์    | ศรีพาเพลิน   |             |
-| 65070041  | นาย เจษฎา     | แต่งสุวรรณ์   |             |
-| 65070184  | นาย ภูวิศ       | ตั้งถาวรสิริกุล |             |
-| 65070188  | นางสาว มนัญชยา | ดอกบัว      |             |
-| 65070215  | นาย ศิริวิชญ์     | มณีฉาย      |             |
-| 65070221  | นาย ศุภกร      | ทองเอียด    |             |
-| 65070228  | นาย เศรษฐโชค  | ตั้งศิริวัฒนวงศ์ |             |
+| 65070030  | นาย จารุกิตติ์    | ศรีพาเพลิน   | Raw Media Devices |
+| 65070041  | นาย เจษฎา     | แต่งสุวรรณ์   | Files and Directories, FHS |
+| 65070184  | นาย ภูวิศ       | ตั้งถาวรสิริกุล | File System Type |
+| 65070188  | นางสาว มนัญชยา | ดอกบัว      | Physical Volume Administration Volume Group Administration Logical Volume Administration |
+| 65070215  | นาย ศิริวิชญ์     | มณีฉาย      | Archiver, Backup/Restore Tools |
+| 65070221  | นาย ศุภกร      | ทองเอียด    | Physical Volume Administration Volume Group Administration Logical Volume Administration |
+| 65070228  | นาย เศรษฐโชค  | ตั้งศิริวัฒนวงศ์ | Files and Directories, FHS |
