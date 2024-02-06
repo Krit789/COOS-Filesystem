@@ -4,11 +4,7 @@
 
 อะไรคือ File System
 
-A filesystem is the methods and data structures that an operating system uses to keep track of files on a disk or
-partition; that is, the way the files are organized on the disk. The word is also used to refer to a partition or
-disk that is used to store the files or the type of the filesystem. Thus, one might say I have two filesystems
-meaning one has two partitions on which one stores files, or that one is using the extended filesystem,
-meaning the type of the filesystem.
+File System คือ วิธีการและโครงสร้างข้อมูลที่ระบบปฏิบัติการใช้ติดตามไฟล์บนดิสก์หรือพาร์ติชัน กล่าวคือ เป็นวิธีการจัดระเบียบไฟล์บนดิสก์ คำนี้ยังใช้เรียกพาร์ติชันหรือดิสก์ที่ใช้จัดเก็บไฟล์ หรือประเภทของไฟล์ระบบอีกด้วย 
 
 # หัวข้อต่าง ๆ
 * [Files and Directories, FHS](/File%20System%20Type/)
