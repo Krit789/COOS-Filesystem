@@ -57,6 +57,7 @@ LVM volume groups และ Logical Volume จะรวมอยู่ในไ�
    * `lvchange` : อนุญาตให้แก้ไขคุณสมบัติของ Logical Volume หลังจากสร้าง
 
    ![Image](https://miro.medium.com/v2/resize:fit:1342/format:webp/0*aVQTBvKe8oocgmsd.png)
+   
    รูปจาก: [https://medium.com/@nareerat.prr/what-is-lvm-24ae24322eff](https://medium.com/@nareerat.prr/what-is-lvm-24ae24322eff)
 
 ---
