@@ -1,6 +1,6 @@
 # Archiver Tool
 
-### ตัวอย่าง คำ Archiver ของ  Linux ได้แก่:
+### ตัวอย่าง คำสั่ง Archiver ของ  Linux ได้แก่:
 
 | Command | Action   |
 |----|---------------|
