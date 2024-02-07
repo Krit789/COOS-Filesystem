@@ -15,9 +15,13 @@
 
 ### การจัดการระดับตรรก (Logical Volume Management - LVM) แบ่งโครงสร้างเป็น 3 ระดับดังนี้:
 
-1. Physical Volume: ดิสก์จริงหรือพาร์ติชันภายในดิสก์ แต่ละส่วนต้องมีการกำหนดเลเบลด้วยคำสั่ง pvcreate เพื่อให้ LVM จัดการได้ เลเบลนี้จะมีข้อมูลอุปกรณ์และรหัสเฉพาะตัว
-2. Volume Group: กลุ่มของดิสก์หรือพาร์ติชันที่ถูกรวมเข้าด้วยกันเพื่อบริหารพื้นที่แบบรวมศูนย์
-3. Logical Volume : หน่วยเก็บข้อมูลเสมือนที่มองเหมือนพาร์ติชันทั่วไป สร้างจากพื้นที่ภายในกลุ่มวอลุ่ม
+1. <b>Physical Volume</b>: ดิสก์จริงหรือพาร์ติชันภายในดิสก์ แต่ละส่วนต้องมีการกำหนดเลเบลด้วยคำสั่ง pvcreate เพื่อให้ LVM จัดการได้ เลเบลนี้จะมีข้อมูลอุปกรณ์และรหัสเฉพาะตัว
+2. <b>Volume Group</b>: กลุ่มของดิสก์หรือพาร์ติชันที่ถูกรวมเข้าด้วยกันเพื่อบริหารพื้นที่แบบรวมศูนย์
+3. <b>Logical Volume</b>: หน่วยเก็บข้อมูลเสมือนที่มองเหมือนพาร์ติชันทั่วไป สร้างจากพื้นที่ภายในกลุ่มวอลุ่ม
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![Image](https://cdn.thegeekdiary.com/wp-content/uploads/2014/10/LVM-basic-structure.png)
+   
+รูปจาก: [https://medium.com/@nareerat.prr/what-is-lvm-24ae24322eff](https://medium.com/@nareerat.prr/what-is-lvm-24ae24322eff)
 
 ### คำสั่งควบคุม LVM มี 2 แบบ:
 
