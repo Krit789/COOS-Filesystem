@@ -1,5 +1,4 @@
-# Files and Directories, FHS
-
+![Cabinet](/Assets/Files%20and%20Directories,%20FHS.jpg)
 # Root Directory
 * Linux มีโครงสร้าง directory เป็นแบบลำดับชั้นเดียว (Single hierarchical directory) นั้นคือทุกอย่างเริ่มต้นจาก root directory หรือก็คือเครื่องหมาย `/` จากนั้นขยายไปเป็น directory รองต่างๆ ซึ่งจะ ต่างจากระบบปฏิบัติการ Windows ที่จะมี "ไดรฟ์" ต่างๆ เช่น C, D, E เป็นต้น และ Linux จัดเรียง directory ที่ถัดจาก root directory ตามลำดับความสำคัญในกระบวนการบูธจากมากไปน้อย
 
