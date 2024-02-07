@@ -1,7 +1,4 @@
-# File System Type
-
----
-
+![Cabinet](/Assets/FileSystemType.jpg)
 ## ประเภทของ File System Type บนระบบ Linux ได้แก่
 
 ### 1) ext (Extended File System):
