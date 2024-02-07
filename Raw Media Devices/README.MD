@@ -1,4 +1,4 @@
-# Raw Media Devices
+![RAWMedia](/Assets/Raw%20Media%20Device.jpg)
 ## อะไรคือ Raw Media Device
 
 &nbsp;&nbsp;&nbsp;&nbsp;<b>Raw Media Device</b> คือประเภทของ <b>Raw Device</b> ที่สามารถใช้ในการเชื่อมกับ Block Device ที่มีอยู่ (เช่น Harddisk หรือ SSD) และดำเนินการ I/O แบบดิบกับ Block Device นั้นโดยการใช้งาน I/O แบบดิบจะข้าม Cache ที่ปกติเชื่อมโยงกับ Block Device ทำให้โปรแกรมสามารถควบ Timings ของ I/O ไปยัง Physical Device นั้นได้มากขึ้น ที่กล่าวมาข้างต้นทำให้ Raw Device เหมาะสำหรับแอปพลิเคชันที่ซับซ้อน เช่น ระบบจัดการฐานข้อมูล ซึ่งมักจะมีระบบแคชของตัวเอง (เช่น Oracle DBMS)
