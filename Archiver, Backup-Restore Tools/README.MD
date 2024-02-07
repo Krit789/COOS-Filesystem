@@ -1,8 +1,8 @@
 # Archiver, Backup/Restore Tools
 
 Archiver, Backup/Restore Tools คือ เครื่องมือที่มีคุณสมบัติและฟังก์ชั่นที่แตกต่างกัน เราจะแบ่งเป็น 2 ส่วน หลักๆได้แก่ 
-## 1. [Archiver files](/Archiver,%20Backup-Restore%20Tools//Archiver/README.MD) 
+##  [1.Archiver files](/Archiver,%20Backup-Restore%20Tools//Archiver/README.MD) 
 เป็นเครื่องมือที่ใช้ในการจัดทำแพ็กเกจและบีบอัดไฟล์หรือไดเร็กทอรีหนึ่งหรือหลายไฟล์ให้เป็นไฟล์เก็บถาวรไฟล์เดียว ไฟล์เก็บถาวรคือคอนเทนเนอร์ที่เก็บไฟล์หรือไดเร็กทอรีหลายไฟล์ในรูปแบบบีบอัดเพื่อลดขนาดและทำให้จัดการและถ่ายโอนได้ง่ายขึ้น
 
-## 2.[Backup and Restore Tools](#/Archiver,%20Backup-Restore%20Tools/Backup-Restore%20Tools/README.MD) 
+##  [2.Backup and Restore Tools](/Archiver,%20Backup-Restore%20Tools//Backup-Restore%20Tools/README.MD) 
   เป็นเครื่องมือที่ใช้ในการสำรองข้อมูล (backup) และการคืนค่าข้อมูล (restore)  โดยการสำรองข้อมูลจากอุปการณ์หรือระบบเก็บข้อมูลต่างๆ
