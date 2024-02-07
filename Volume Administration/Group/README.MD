@@ -171,8 +171,313 @@ vgextend <volume_group_name> <physical_volume>
 
 คุณสามารถจำกัดขอบเขตการสแกนของคำสั่ง vgscan เพื่อไม่ให้สแกนอุปกรณ์บางประเภทได้ โดยกำหนดค่าตัวกรอง (filter) 
 
-`filter = [<ยอมรับ>|<ปฏิเสธ>] <ประเภทอุปกรณ์> <ค่า>`
+`filter = [accept|reject] <ประเภทอุปกรณ์> <ค่า>`
 
 ---
 
+## ลบ Physical Volumes ออกจาก Volume Group
+
+`vgreduce` จะลดขนาดความจุของ Volume Groups โดยการลบ Physical Volumes ที่ว่างอย่างน้อยหนึ่งโวลุ่ม
+
+ ```
+vgreduce my_volume_group /dev/hda1
+```
+- คำสั่งนี้จะลบ Physical Volumes `/dev/hda1` ออกจากกลุ่ม Volume Group `my_volume_group`
+
+Physical Volumes ที่ถูกลบจะพร้อมใช้งานใหม่สำหรับ Volume Groups อื่นๆ หรือถูกลบออกจากระบบโดยสมบูรณ์
+
+> [!TIP]
+>ประโยชน์:
+>- เพิ่มพื้นที่ว่างที่ไม่จำเป็นให้กับระบบ
+>- ช่วยให้จัดการพื้นที่จัดเก็บข้อมูลได้อย่างมีประสิทธิภาพมากขึ้น
+>- ลดความซับซ้อนในการจัดการ VG ต่างๆ
+
+ก่อนที่จะลบ Physical Volume ออก ควรตรวจสอบให้แน่ใจว่า Physical Volume นั้นไม่ได้ถูกใช้งานโดย Logical Volume ใดๆ
+
+ใช้คำสั่ง `pvdisplay` แสดงข้อมูลเกี่ยวกับ Physical Volume ทั้งหมดในระบบ 
+
+```
+# pvdisplay /dev/hda1
+
+-- Physical volume ---
+PV Name               /dev/hda1
+VG Name               myvg
+PV Size               1.95 GB / NOT usable 4 MB [LVM: 122 KB]
+PV#                   1
+PV Status             available
+Allocatable           yes (but full)
+Cur LV                1
+PE Size (KByte)       4096
+Total PE              499
+Free PE               0
+Allocated PE          499
+PV UUID               Sd44tK-9IRw-SrMC-MOkn-76iP-iftz-OVSen7
+```
+
+หากยังต้องการใช้ Physical volume อยู่ ต้องย้ายข้อมูลไปยัง Physical volume อื่นโดยใช้คำสั่ง `pvmove` 
+
+ตัวอย่างการใช้งาน:
+
+```
+pvmove --size 10G /dev/sdc1 /dev/sdd1
+```
+
+- คำสั่งนี้จะย้ายข้อมูล 10GB จาก `/dev/sdc1` ไปยัง `/dev/sdd1`
+### การลบ Physical volume ที่ขาดหายหรือเสียหายของ LVM 
+
+**Physical volume ที่ขาดหาย (ไม่มีข้อมูล)**
+- หาก Logical Volume ใดๆ ไม่ได้ถูกจัดสรรบน Physical volume ที่ขาดหาย สามารถใช้ `--removemissing` ในคำสั่ง `vgreduce` เพื่อลบ Physical volume นั้นออกจาก Volume Group ได้
+
+- ตัวอย่างการใช้งาน: `vgreduce --removemissing my_vg`
+
+**Physical volume ที่ขาดหาย (มีข้อมูล mirror)**
+- หาก Physical volume ที่ขาดหาย ประกอบด้วย mirror image ของ Logical Volume แบบ mirror segment
+- สามารถใช้ `--removemissing --mirrorsonly --force` ในคำสั่ง `vgreduce` เพื่อลบเฉพาะ mirror image ออกจาก Physical volume
+- `--mirrorsonly` ระบุให้ลบเฉพาะ mirror image
+- `--force` ข้ามการยืนยันการดำเนินการ
+- ตัวอย่างการใช้งาน: `vgreduce --removemissing --mirrorsonly --force my_vg`
+
+>[!TIP]
+> **Mirror image แบบ mirror segment** คือ สำเนาข้อมูลของ Logical Volume ที่ถูกแบ่งออกเป็นส่วนย่อยๆ กระจายเก็บไว้บน Physical Volume หลายๆ ตัว เปรียบเสมือนการทำสำเนาข้อมูลสำรองเพื่อป้องกันข้อมูลสูญหายในกรณีที่ Physical Volume ตัวใดตัวหนึ่งเกิดขัดข้อง
+
+---
+## การเปิดใช้งานและปิดใช้งาน Volume Groups
+
+การปิดใช้งานหรือเปิดใช้งาน Volume Groups ให้ใช้ argument `-a` หรือ `--available` ของคำสั่ง `vgchange`
+
+**ตัวอย่างการปิดใช้งาน:**
+```
+vgchange -a n my_volume_group
+```
+- คำสั่งนี้จะปิดใช้งาน my_volume_group ตัวอักษร n ย่อมาจาก --available หมายถึงไม่พร้อมใช้งาน
+
+**ตัวอย่างการเปิดใช้งาน:**
+
+```
+vgchange -a y my_volume_group
+```
+- คำสั่งนี้จะเปิดใช้งาน my_volume_group ตัวอักษร y ย่อมาจาก --available หมายถึงพร้อมใช้งาน
+
+>[!WARNING]
+>- ปิดใช้งาน Volume Groups เฉพาะเมื่อจำเป็นจริงๆ
+>- ตรวจสอบให้แน่ใจว่าไม่มี Logical Volume ใดกำลังถูกใช้งานขณะปิดใช้งาน Volume Groups
+>- สำรองข้อมูลสำคัญก่อนดำเนินการ
+
+**การเปิดใช้งานและปิดใช้งาน Volume Group สำหรับ clustered locking**
+
+การเปิดใช้งาน/ปิดใช้งาน Volume Group:
+- `-e` (หรือ `--exclusive`): เปิดใช้งาน/ปิดใช้งาน Volume Group  เฉพาะบนโหนดเดียว
+- `-l` (หรือ `--local`): เปิดใช้งาน/ปิดใช้งาน Volume Group เฉพาะบนโหนดปัจจุบัน
+
+**ตัวอย่างการใข้งาน:**
+เปิดใช้งาน  my_vg แบบ exclusive บนโหนดปัจจุบัน
+```
+vgchange -a e -l my_vg
+```
+**ปิดใช้งาน my_vg แบบ local:**
+```
+vgchange -a n -l my_vg
+```
+
+> [!NOTE]
+> ล็อกแบบคลัสเตอร์ (clustered locking):
+>- เป็นคุณสมบัติของ LVM ที่ช่วยให้ควบคุมการเข้าถึง Volume Group ร่วมกันระหว่างโหนดต่างๆ ในคลัสเตอร์
+ช่วยป้องกันความขัดแย้งในการเขียนข้อมูลลงใน Volume Group เดียวกันจากหลายโหนด
+>- เป็นคุณสมบัติของ LVM ที่ช่วยให้ควบคุมการเข้าถึง Volume Group ร่วมกันระหว่างโหนดต่างๆ ในคลัสเตอร์
+ช่วยป้องกันความขัดแย้งในการเขียนข้อมูลลงใน Volume Group เดียวกันจากหลายโหนด
+
+---
+## การเปลี่ยนพารามิเตอร์ของ  Volume Group
+
+`vgchange` สามารถเปลี่ยนพารามิเตอร์ต่างๆ ของ Volume Group ที่มีอยู่ได้
+ตัวอย่างเช่น เปลี่ยนชื่อ Volume Group, ปรับขนาดพื้นที่ว่างขั้นต่ำ, กำหนดค่าการล็อก, เป็นต้น
+
+**ตัวอย่างการใช้งาน:**
+```
+vgchange -M 128 vg00
+```
+- เปลี่ยนค่าพารามิเตอร์ -M (maximum number of logical volumes)
+- กำหนดให้ vg00 สามารถสร้าง Logical Volume ได้สูงสุด 128 โวลุ่ม
+
+> [!TIP]
+> - เปลี่ยนชื่อ `vg00` เป็น `vg01`: `vgchange -n vg01 vg00`
+> - ปรับขนาดพื้นที่ว่างขั้นต่ำของ `vg00` เป็น 10%: `vgchange -R 10% vg00`
+> - เปิดใช้งานการล็
+อกแบบคลัสเตอร์สำหรับ `vg00`: `vgchange -x y vg00`
+
+
+---
+## การลบ Volume groups
+คำสั่ง `vgremove` ใช้สำหรับลบ Volume Group ออกจากระบบ เฉพาะเมื่อไม่มี Logical Volume อยู่ภายใน
+
+```
+vgremove <volume_group_name>
+```
+
+---
+## การแยก Volume group
+
+`vgsplit` ใช้สำหรับแบ่ง Physical Volume ภายใน Volume group และสร้าง Volume group ใหม่
+
+```
+vgsplit <volume_group_name> <new_volume_group_name> <physical-volume>
+```
+
+> [!NOTE]
+>- Logical Volume ไม่สามารถแบ่งระหว่าง Volume group ได้
+>- แต่ละ Logical Volume ต้องอยู่บน Physical Volume ทั้งหมดภายใน Volume group เดิมหรือ Volume group ใหม่
+>- ใช้คำสั่ง `pvmove` ย้ายข้อมูลระหว่าง Physical Volume เพื่อเตรียมการแบ่ง Logical Volume ที่ซับซ้อน
+
+**ตัวอย่างการใช้งาน:**
+```
+vgsplit bigvg smallvg /dev/sdc1 /dev/sdd1
+```
+
+- คำสั่งข้างต้นจะแบ่ง bigvg โดยสร้าง  ใหม่ชื่อ smallvg
+- `/dev/sdc1` และ `/dev/sdd1` จะถูกย้ายจาก `bigvg` ไปยัง `smallvg`
+
+---
+## การรวมกลุ่ม Volume group
+
+`vgmerge` จะรวม Volume group ดึงข้อมูล (source) ที่ไม่ได้ใช้งาน เข้ากับ Volume group ปลายทาง (destination) ที่ใช้งานอยู่หรือไม่ได้ใช้งาน
+
+> [!IMPORTANT] ขนาดของหน่วยพื้นที่ทางกายภาพ (physical extent sizes) ของทั้งสอง Volume group ต้องเท่ากัน และข้อมูลของ Physical Volume และ Logical Volume ภายในทั้งสอง Volume group ต้องไม่เกินขีดจำกัดของ Volume group ปลายทาง
+```
+vgmerge <volume_group_name_1> <volume_group_name_2>
+```
+**ตัวอย่างการใช้งาน:**
+```
+vgmerge vg01 vg02
+```
+- รวม vg01 (ดึงข้อมูล) เข้ากับ vg02 (ปลายทาง)
+
+---
+## การสำรองข้อมูล Volume Group Metadata
+
+คำสั่ง `vgcfgbackup` และ `vgcfgrestore` ในการสำรองและกู้คืนข้อมูล Volume Group Metadata ใน LVM
+
+**การสำรองข้อมูลเมตาดาต้าอัตโนมัติ:**
+
+LVM สร้างการสำรองข้อมูลเมตาดาต้าอัตโนมัติทุกครั้งที่มีการเปลี่ยนแปลงการกำหนดค่าของ Volume Group หรือ Logical Volume
+- สามารถปิดใช้งานการสำรองข้อมูลอัตโนมัติได้ในไฟล์ `lvm.conf`
+- โดยค่าเริ่มต้น ไฟล์สำรองข้อมูลเมตาดาต้าจะถูกเก็บไว้ใน `/etc/lvm/backup`
+- ไฟล์เก็บถาวรเมตาดาต้าจะถูกเก็บไว้ใน `/etc/lvm/archive`
+
+**การสำรองข้อมูลเมตาดาต้าด้วยตนเอง:**
+
+คำสั่ง `vgcfgbackup` ใช้สำหรับสำรองข้อมูล Volume Group Metadata ไปยังไฟล์ที่กำหนด
+```
+vgcfgbackup my_vg
+``` 
+- สำรองข้อมูล Volume Group Metadata  `my_vg` ไปยัง `/etc/lvm/backup/my_vg.bak`
+- สามารถระบุชื่อไฟล์สำรองข้อมูลที่ต้องการด้วยตัวเลือก `-f`
+
+
+**การกู้คืนข้อมูลเมตาดาต้า:**
+
+คำสั่ง `vgcfgrestore` ใช้สำหรับกู้คืนข้อมูล Volume Group Metadata  จากไฟล์สำรองข้อมูลหรือไฟล์เก็บถาวร
+```
+vgcfgrestore my_vg /etc/lvm/backup/my_vg.bak
+``` 
+- กู้คืนข้อมูลเมตาดาต้าของ `my_vg` จากไฟล์ `/etc/lvm/backup/my_vg.bak`
+- สามารถระบุไฟล์เก็บถาวรด้วยตัวเลือก `-a`
+
+---
+## การเปลี่ยนชื่อ Volume Group
+ใช้คำสั่ง `vgrename` เพื่อเปลี่ยนชื่อ Volume Group ที่มีอยู่
+
+```
+vgrename <my_volume_group_name> <new_volume_group_name>
+```
+- คำสั่งนี้จะเปลี่ยนชื่อกลุ่มวอลุ่ม my_volume_group_name เป็น new_volume_group_name
+```
+vgrename -n <new_volume_group_name> <my_volume_group_name>
+```
+- คำสั่งนี้เหมือนกับตัวอย่างก่อนหน้า แต่ใช้ตัวเลือก -n เพื่อระบุชื่อใหม่
+
+>[!WARNING]
+>- ตรวจสอบให้แน่ใจว่าชื่อใหม่ที่ต้องการตั้งนั้นยังไม่มีกลุ่มวอลุ่มอื่นใช้งานอยู่
+>- การเปลี่ยนชื่อกลุ่มวอลุ่มอาจส่งผลต่อการกำหนดค่าของแอปพลิเคชันอื่นๆ ที่ใช้กลุ่มวอลุ่มนั้นอยู่ ดังนั้นควรแจ้งเตือนและสำรองข้อมูลไว้ก่อนดำเนินการ
+
+
+---
+## การย้าย Volume Group ไปยังระบบอื่น
+
+ทำได้โดยใช้คำสั่ง `vgexport` และ `vgimport`
+
+> [!NOTE]
+>สามารถใช้อาร์กิวเมนต์ `--force` ของคำสั่ง `vgimport` ซึ่งช่วยให้คุณสามารถนำเข้า Volume Group ที่ขาดหายไป Physical Volume และเรียกใช้คำสั่ง `vgreduce --removemissing` ในภายหลัง
+
+คำสั่ง `vgexport` ทำให้ volume group ที่ inactive ไม่สามารถเข้าถึงระบบได้ ซึ่งจะทำให้สามารถถอด physical volume ออกได้ 
+
+ส่วนคำสั่ง `vgimport` ทำให้เครื่องสามารถเข้าถึง Volume group ได้อีกครั้ง หลังจากการใช้ `vgexport` ที่ทำให้ inactive
+
+หากต้องการย้ายกลุ่มวอลุ่มจากระบบหนึ่งไปยังอีกระบบหนึ่ง ให้ดำเนินการขั้นตอนต่อไปนี้
+
+**เตรียมระบบต้นทาง**
+
+1. หยุดการใช้งานลอจิคัลโวลุ่ม (Logical Volume):
+    -    ตรวจสอบให้แน่ใจว่าไม่มีผู้ใช้ใดเข้าถึงไฟล์บนโวลุ่มที่ใช้งานอยู่ใน Volume group 
+    - ปลด (Unmount) ลอจิคัลโวลุ่มทั้งหมดภายใน Volume group  เพื่อป้องกันการเขียนข้อมูลขณะย้าย
+2. ปิดใช้งาน Volume group:
+    - ใช้คำสั่ง `vgchange -a n <ชื่อ  Volume group>` เพื่อปิดใช้งาน Volume group  
+    - ตัวเลือก `-a n` กำหนดให้  Volume group   ไม่พร้อมใช้งาน (not available)
+    - การปิดใช้งานจะป้องกันกิจกรรมใดๆ เกิดขึ้นกับ  Volume group  
+3. ส่งออก Volume group:
+    - ใช้คำสั่ง `vgexport <ชื่อ Volume group>` เพื่อส่งออก Volume group จากระบบ
+    - คำสั่งนี้จะสร้างไฟล์เมตาดาต้าของ Volume group  และทำเครื่องหมาย Volume group ว่าไม่พร้อมใช้งานบนระบบต้นทาง
+  
+หลังจากที่คุณส่งออก Volume group, Physical Volume จะแสดงว่าอยู่ใน Volume group ที่ส่งออกเมื่อดำเนินการคำสั่ง `pvscan`
+
+```
+# pvscan
+  PV /dev/sda1    is in exported VG myvg [17.15 GB / 7.15 GB free]
+  PV /dev/sdc1    is in exported VG myvg [17.15 GB / 15.15 GB free]
+  PV /dev/sdd1   is in exported VG myvg [17.15 GB / 15.15 GB free]
+  ...
+```
+
+**ขั้นตอนการนำเข้าและเปิดใช้งาน Volume group บนระบบปลายทาง:**
+
+1. เชื่อมต่อดิสก์กับระบบปลายทาง:
+    - ตรวจสอบให้แน่ใจว่าดิสก์ที่ประกอบด้วย Volume group  ได้เชื่อมต่อกับระบบปลายทางอย่างถูกต้อง
+2. ย้ายไฟล์เมตาดาต้า:
+    - คัดลอกไฟล์เมตาดาต้าที่ส่งออกจากระบบต้นทาง `(/etc/lvm/backup/<ชื่อ Volume group>.bak)` ไปยังระบบปลายทาง
+    - วางไฟล์นี้ไว้ในไดเรกทอรีเดียวกันบนระบบปลายทาง `(/etc/lvm/backup/<ชื่อ Volume group>.bak)`
+3. นำเข้ากลุ่มวอลุ่ม:
+    - ใช้คำสั่ง `vgimport <ชื่อ Volume group >` บนระบบปลายทางเพื่อนำเข้า Volume group 
+    - คำสั่งนี้จะใช้ข้อมูลเมตาดาต้าที่ย้ายมาเพื่อสร้าง Volume group ใหม่บนระบบปลายทาง
+4. เปิดใช้งานกลุ่มวอลุ่ม:
+    - ใช้คำสั่ง `vgchange -a y <ชื่อ Volume group >` เพื่อเปิดใช้งาน Volume group บนระบบปลายทาง
+    - ตัวเลือก `-a y` กำหนดให้ Volume group พร้อมใช้งาน (available)
+5. สร้างและเชื่อมต่อระบบไฟล์:
+    - สร้างระบบไฟล์ Logical Volume ภายใน Volume group  ด้วยคำสั่ง `mkfs`
+    - เชื่อมต่อระบบไฟล์ด้วยคำสั่ง `mount` เพื่อให้สามารถใช้งานได้
+
+**ตัวอย่างการใช้งาน:**
+```
+# ระบบปลายทาง
+cp /path/to/<ชื่อ Volume group>.bak /etc/lvm/backup/<ชื่อ Volume group>.bak
+vgimport <ชื่อ Volume group>
+vgchange -a y <ชื่อ Volume group>
+mkfs.ext4 /dev/<ชื่อ Logical volume>
+mount /dev/<ชื่อ Logical volume> /mnt/<ชื่อ mount point>
+```
+
+---
+## การสร้าง Volume Group Directory
+
+`vgmknodes` โดยคำสั่งนี้จะทำการ check special file LVM2 ใน directory /dev ที่จำเป็นสำหรับ logical volume ที่ active โดยมันจะทำการสร้าง special file ที่หายไป เเละทำการลบอันที่ไม่ใช้เเล้ว
+
+>[!TIP]
+>- แก้ไขปัญหาไฟล์พิเศษ LVM2 ที่เสียหายหรือสูญหาย
+>- ทำให้ LV ใช้งานได้โดยไม่ต้องสร้างใหม่
+>- ช่วยในการกู้คืนข้อมูลหลังจากปัญหาฮาร์ดแวร์
+
+ใช้ร่วมกับ `vgscan` ตัวเลือก `-m` หรือ `mknodes` กับ `vgscan` ทำให้ `vgmknodes` ทำงานโดยอัตโนมัติ
+สะดวกสำหรับการอัปเดตข้อมูล Volume Group เมื่อเชื่อมต่ออุปกรณ์จัดเก็บข้อมูลใหม่
+
+**ตัวอย่างการใช้งาน:**
+- สร้างไฟล์พิเศษสำหรับ Volume Group  my_vg: `vgmknodes my_vg`
+- ค้นหาและสร้างไฟล์พิเศษ Volume Group ใหม่: `vgscan -m`
 
