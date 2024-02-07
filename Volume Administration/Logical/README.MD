@@ -453,6 +453,104 @@ lvcreate -C -L SIZE -n NAME vg_name
 
 
 ----
+
+## Persistent Device Numbers (PDNs)
+ ใน LVM คือหมายเลขประจำตัวอุปกรณ์ถาวรที่ LVM กำหนดให้กับ Logical Volume แต่ละตัว PDNs ช่วยให้ LVM สามารถระบุ Logical Volume ได้อย่างไม่ซ้ำกัน โดยไม่คำนึงถึงชื่อ Logical Volume หรือตำแหน่งบนดิสก์
+ 
+**ประโยชน์ของ PDNs:**
+
+- เพิ่มความน่าเชื่อถือและความเสถียรของ LVM
+- ช่วยให้สามารถย้าย Logical Volume ไปยังดิสก์อื่นได้โดยไม่ต้องเปลี่ยนชื่อ
+- ช่วยให้สามารถกู้คืน Logical Volume ที่เสียหายได้ง่ายขึ้น
+
+**PDNs ทำงานอย่างไร:**
+
+- LVM กำหนด PDN ใหม่ให้กับ Logical Volume แต่ละตัวเมื่อสร้าง Logical Volume
+- PDN จะถูกเก็บไว้ใน metadata ของ Logical Volume
+- เมื่อ LVM เข้าถึง Logical Volume จะใช้ PDN เพื่อระบุ Logical Volume
+
+**หมายเลขอุปกรณ์หลักและรองใน LVM**
+
+- หมายเลขอุปกรณ์หลัก `(major)` และรอง `(minor)` คือตัวเลขที่ระบบปฏิบัติการใช้ระบุอุปกรณ์ฮาร์ดแวร์
+- ใน LVM หมายเลขเหล่านี้มักถูกกำหนดแบบไดนามิก (dynamically) เมื่อโหลดโมดูล LVM
+- อย่างไรก็ตาม บางแอปพลิเคชันทำงานได้ดีที่สุดเมื่ออุปกรณ์บล็อก (block device) ถูกเปิดใช้งานด้วยหมายเลขอุปกรณ์หลักและรองเดียวกันเสมอ
+- คุณสามารถกำหนดหมายเลขเหล่านี้ด้วยคำสั่ง `vcreate` และ `lvchange` โดยใช้ตัวเลือกดังนี้:
+    - `--persistent y`: กำหนดให้ LVM ใช้หมายเลขอุปกรณ์ที่กำหนดแบบคงที่
+    - `--major major`: ระบุหมายเลขอุปกรณ์หลักที่ต้องการ
+    -  `--minor minor`: ระบุหมายเลขอุปกรณ์รองที่ต้องการ
+
+**ตัวอย่างการใช้งาน:**
+```
+lvcreate --type raid1 -w 50% -n data_pool vg0 --persistent y --major 240 --minor 0
+```
+- สร้าง Logical Volume แบบ RAID1 ชื่อ data_pool ในกลุ่มวอลุ่ม vg0 โดยกำหนดให้ใช้หมายเลขอุปกรณ์หลัก 240 และหมายเลขอุปกรณ์รอง 0 แบบคงที่
+
+---
+## การเปลี่ยนพารามิเตอร์ของ Logical Volume Group
+`lvchange` ยังสามารถใช้ในการเปิดใช้งาน `(activate)` และปิดใช้งาน `(deactivate)` 
+
+ส่วนถ้าต้องการเปิดหรือปิดใช้งานโลจิคัลโวลุ่มทั้งหมดใน volume group พร้อมกัน สามารถใช้คำสั่ง `vgchange` 
+
+คำสั่งต่อไปนี้เป็นการเปลี่ยนสถานะสิทธิ์ของ volume lvol1 ในกลุ่มวอลุ่ม vg00 ให้เป็น read-only 
+
+```
+lvchange -pr vg00/lvol1
+```
+
+---
+
+## การเปลี่ยนชื่อ Logical Volume
+
+`lvrename` สามารถใช้คำสั่งได้สองรูปแบบตามตัวอย่างต่อไป
+
+**รูปแบบแรก ใช้ที่อยู่ของอุปกรณ์:**
+```
+lvrename /dev/vg02/lvold /dev/vg02/lvnew
+```
+
+**รูปแบบที่สอง ใช้ชื่อกลุ่มวอลุ่มและชื่อ Logical Volume:**
+``` 
+lvrename vg02 lvold lvnew
+```
+ทั้งสองคำสั่งนี้จะเปลี่ยนชื่อ Logical Volume lvold ในกลุ่มวอลุ่ม vg02 เป็น lvnew 
+
+---
+## การลบ Logical Volume
+
+`lvremove` ถ้า Logical Volume นั้นกำลังถูก `mount` อยู่ จะต้องทำการ `umount` ก่อนที่จะลบ นอกจากนี้ในสภาพแวดล้อมแบบคลัสเตอร์ จะต้องทำการปิดการใช้งาน Logical Volume ก่อนการลบด้วย
+
+
+ทำการลบ Logical Volume `/dev/testvg/testlv` ออกจากกลุ่มวอลุ่ม `testvg` โดยที่ Logical Volume นี้ยังไม่ได้ถูกปิดการใช้งาน
+
+```
+# lvremove /dev/testvg/testlv
+Do you really want to remove active logical volume "testlv"? [y/n]: y
+  Logical volume "testlv" successfully removed
+```
+
+สามารถปิดการใช้งานลอจิคัลโวลุ่มก่อนการลบได้อย่างชัดเจนด้วยคำสั่ง `lvchange -a` เพื่อป้องกันไม่ให้ระบบถามยืนยันการลบ
+
+
+---
+
+## การแสดง Logical Volumes
+สามารถใช้คำสั่ง 3 แบบเพื่อแสดงรายละเอียดคุณสมบัติของ Logical Volume ใน LVM ได้แก่
+
+1. `lvs`: คำสั่งนี้แสดงข้อมูลของ Logical Volume ในรูปแบบตาราง โดยแต่ละบรรทัดแสดงข้อมูลของ Logical Volume เดียว คำสั่ง lvs มีตัวเลือกสำหรับปรับแต่งรูปแบบการแสดงผล เหมาะสำหรับการเขียนสคริปต์ 
+2. `lvdisplay`: คำสั่งนี้แสดงรายละเอียดคุณสมบัติของ Logical Volume เช่น ขนาด, รูปแบบ, และการแมปปิ้งข้อมูล ในรูปแบบที่ตายตัว 
+
+ตัวอย่างคำสั่งต่อไปนี้แสดงคุณสมบัติของ lvol2 ในกลุ่มวอลุ่ม vg00:
+```
+lvdisplay -v /dev/vg00/lvol2
+```
+>[!TIP]
+ถ้ามีการสร้าง Snapshot Volume จาก Logical Volume นี้ คำสั่งนี้จะแสดงรายการของ Snapshot Volume ทั้งหมด พร้อมสถานะ (เปิดใช้งานหรือปิดใช้งาน)
+
+3. `lvscan`: คำสั่งนี้สแกนหา Logical Volume ทั้งหมดในระบบและแสดงรายการ 
+    -  หากต้องการดูคุณสมบัติโดยละเอียดของ Logical Volume เฉพาะ: `lvdisplay /dev/vg_name/lv_name`
+    - หากต้องการดูข้อมูลของ Logical Volume ทั้งหมดในรูปแบบตารางที่ปรับแต่งได้:
+    `lvs --options all`
+
 ## Reference
 
 - [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html)
