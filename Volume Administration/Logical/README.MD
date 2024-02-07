@@ -326,3 +326,142 @@ lvcreate --type mirror -L 50G -m 1 -n mirrorlv vg0
 >- สามารถกำหนดดิสก์และตำแหน่งที่ใช้สร้าง Mirrored Volumes ได้
 >- รวมการแบ่งข้อมูล (striping) กับการทำมิเรอร์ในลอจิคัลโวลุ่มเดียวได้ (`--mirrors` และ `--stripes`)
 
+---
+### การสร้าง Thinly-Provisioned Logical Volumes
+
+(หรือ Thin Volumes) ใน LVM คือเทคโนโลยีการจัดเก็บข้อมูลที่สามารถสร้าง Logical Volumes ที่มีขนาดใหญ่กว่าพื้นที่จัดเก็บจริงที่ดิสก์มีอยู่
+-  Logical Volumes จะได้รับพื้นที่จัดเก็บจริงเฉพาะเมื่อมีการเขียนข้อมูลเท่านั้น
+- LVM บริหารจัดการพื้นที่จัดเก็บแบบไดนามิก โดยยึดพื้นที่ว่างจากดิสก์อื่นๆ ในกลุ่มวอลุ่มเดียวกัน
+
+> [!NOTE] เหมาะสำหรับข้อมูลชั่วคราว, ไฟล์สำรอง, หรือระบบทดสอบ
+ไม่เหมาะสำหรับระบบปฏิบัติการ, ฐานข้อมูลสำคัญ, หรือไฟล์ที่ต้องการความเร็วในการเขียนสูง
+
+![Image](https://engineerworkshop.com/content/images/2020/02/GoodStorage.jpg)
+
+รูปจาก:[https://engineerworkshop.com/blog/lvm-thin-provisioning-and-monitoring-storage-use-a-case-study/](https://engineerworkshop.com/blog/lvm-thin-provisioning-and-monitoring-storage-use-a-case-study/)
+
+**ข้อดี:**
+
+- เพิ่มประสิทธิภาพในการจัดสรรพื้นที่จัดเก็บ
+สามารถสร้างลอจิคัลโวลุ่มขนาดใหญ่โดยไม่จำกัดด้วยพื้นที่ดิสก์จริง
+- ลดความจำเป็นในการซื้อดิสก์เพิ่มเติม
+
+**ข้อเสีย:**
+- ต้องติดตามและบริหารจัดการพื้นที่ว่างในกลุ่มวอลุ่มอย่างใกล้ชิด
+- ประสิทธิภาพการเขียนข้อมูลอาจลดลงเมื่อพื้นที่ว่างใกล้หมด
+- ไม่เหมาะสำหรับข้อมูลสำคัญที่ต้องการความทนทานสูง
+
+
+### คำสั่งสร้าง Thin Volume:
+```
+lvcreate -T -L SIZE -n NAME vg_name
+```
+- `-T`: ระบุการสร้าง Thin Volume
+- `-L SIZE`: ระบุขนาดลอจิคัลโวลุ่ม
+- `-n NAME`: ตั้งชื่อลอจิคัลโวลุ่ม
+- `vg_name`: ชื่อกลุ่มวอลุ่ม
+
+**ตัวอย่างการใช้งาน:**
+```
+lvcreate -T -L 100G -n thin_vol my_vg
+```
+- คำสั่งนี้จะสร้าง Thin Volume ชื่อ `thin_vol` ขนาด 100GB ในกลุ่มวอลุ่ม `my_vg`
+
+---
+## การสร้าง Snapshot Volumes
+
+เทคโนโลยีการบันทึกภาพสถานะของ Logical Volume ณ ช่วงเวลาใดเวลาหนึ่ง เปรียบเสมือนการ "ถ่ายรูป" ข้อมูลของคุณไว้ ช่วยให้สามารถกู้คืนข้อมูลกลับมายังสถานะนั้นๆ ได้
+
+>[!NOTE] 
+>- เหมาะสำหรับการสำรองข้อมูลแบบ point-in-time
+>- ช่วยให้สามารถย้อนกลับไปยังสถานะก่อนเกิดปัญหา เช่น ข้อมูลสูญหาย หรือการลบข้อมูลโดยไม่ได้ตั้งใจ
+>- สามารถใช้ Snapshot Volume สำหรับการทดสอบหรือพัฒนาซอฟต์แวร์
+
+- Snapshot Volume ไม่ได้เป็น Logical Volume แยกต่างหาก แต่เป็นเพียงภาพถ่ายของ Logical Volume ณ เวลาที่กำหนด
+- Snapshot Volume ใช้พื้นที่จัดเก็บข้อมูลเท่ากับการเปลี่ยนแปลงข้อมูลที่เกิดขึ้นหลังจากการ Snapshot ครั้งล่าสุด
+- สามารถสร้าง Snapshot Volume ได้หลายครั้ง โดยไม่จำเป็นต้องมีพื้นที่ว่างเท่ากับขนาด Logical Volume ทั้งหมด
+
+![Image](https://docs.aws.amazon.com/images/AWSEC2/latest/UserGuide/images/snapshot_1c.png)
+
+รูปจาก: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html)
+
+**ข้อดี:**
+- กู้คืนข้อมูลกลับมายังสถานะก่อนหน้าได้รวดเร็ว
+- รองรับการกู้คืนทั้งแบบเต็ม Volume และแบบไฟล์ต่อไฟล์
+- ช่วยให้สามารถย้อนกลับไปยังสถานะก่อนเกิดปัญหา เช่น ข้อมูลสูญหาย หรือการลบข้อมูลโดยไม่ได้ตั้งใจ
+
+**ข้อเสีย:**
+
+- ใช้พื้นที่จัดเก็บข้อมูลเพิ่มเติมสำหรับ Snapshot แต่ละครั้ง
+- ประสิทธิภาพการเขียนข้อมูลอาจช้าลงเล็กน้อยเมื่อมี Snapshot จำนวนมาก
+- ไม่สามารถกู้คืน Snapshot ที่ถูกเขียนทับหรือลบไปแล้
+
+### คำสั่งสร้าง Snapshot Volume:
+```
+lvcreate -s -n NAME vg_name/lv_name
+```
+- `-s`: ระบุการสร้าง Snapshot Volume
+- `-n NAME`: ตั้งชื่อ Snapshot Volume
+- `vg_name/lv_name`: ระบุ Logical Volume ที่ต้องการสร้าง Snapshot
+
+**ตัวอย่างการใช้งาน**
+```
+lvcreate -s -n my_snapshot my_vg/my_vol
+```
+- สร้าง Snapshot Volume ชื่อ `my_snapshot` จาก Logical Volume my_vol ในกลุ่มวอลุ่ม `my_vg`
+
+---
+## การสร้าง LVM Cache Logical Volumes
+
+หรือ Cache Volumes ใน LVM คือ เทคโนโลยีการจัดเก็บข้อมูลที่ใช้แคชข้อมูลร้อน (hot data) บนดิสก์ความเร็วสูง ช่วยเพิ่มประสิทธิภาพการอ่านข้อมูลโดยรวมของ Logical Volume
+
+> [!NOTE]
+>- เหมาะสำหรับ Logical Volume ที่มีการอ่านข้อมูลบ่อยๆ
+>- ช่วยเพิ่มประสิทธิภาพการอ่านข้อมูลโดยรวมของระบบ
+>- ไม่เหมาะสำหรับ Logical Volume ที่มีการเขียนข้อมูลบ่อยๆ
+
+- Cache Volume ทำหน้าที่เป็นชั้นกลางระหว่าง Logical Volume จริงกับดิสก์
+- ข้อมูลที่ถูกอ่านบ่อยๆ จะถูกเก็บไว้ใน Cache Volume เพื่อการเข้าถึงที่รวดเร็ว
+- LVM บริหารจัดการการแคชข้อมูลแบบอัตโนมัติ โดยไม่ต้องแทรกแซงจากผู้ใช้
+
+การใช้งาน LVM caching ใช้ประเภท LVM logical volume ต่อไปนี้ ทั้งหมดเหล่านี้จะต้องอยู่ใน volume group เดียวกัน
+
+- Origin logical volume: Logical volume ขนาดใหญ่และช้า
+- Cache pool logical volume: Logical volume ขนาดเล็กและเร็ว ประกอบด้วยอุปกรณ์สองอย่าง: cache data logical volume และ  cache metadata logical volume
+- Cache data logical volume: Logical volume ที่บรรจุบล็อกข้อมูลสำหรับ cache pool logical volume
+- Cache metadata logical volume: Logical volume ที่บรรจุข้อมูลเมตาดาต้าสำหรับ cache pool logical volume ซึ่งเก็บข้อมูลบัญชีที่ระบุว่าบล็อกข้อมูลถูกเก็บไว้ที่ใด (เช่น บน origin logical volume หรือ cache data logical volume)
+- Cache logical volume: Logical volume ที่ประกอบด้วย origin logical volume และ cache pool logical volume เป็นอุปกรณ์ที่ใช้งานได้จริงซึ่งรวมองค์ประกอบต่างๆ ของ cache volume ไว้ด้วยกัน
+
+**ข้อดี:**
+- เพิ่มประสิทธิภาพการอ่านข้อมูลโดยรวม
+- ลดเวลาแฝงในการเข้าถึงข้อมูล
+- เหมาะสำหรับใช้งานกับข้อมูลที่มีการอ่านบ่อยๆ เช่น ฐานข้อมูล  เว็บเซิร์ฟเวอร์
+ 
+**ข้อเสีย:**
+
+- ใช้พื้นที่จัดเก็บข้อมูลเพิ่มเติมสำหรับ Cache Volume
+- ประสิทธิภาพการเขียนข้อมูลอาจลดลงเล็กน้อย
+- จำเป็นต้องมีดิสก์ความเร็วสูงสำหรับ Cache Volume
+
+### คำสั่งสร้าง Cache Volume:
+```
+lvcreate -C -L SIZE -n NAME vg_name
+```
+- `-C`: ระบุการสร้าง Cache Volume
+- `-L SIZE`: ระบุขนาด Cache Volume
+- `-n NAME`: ตั้งชื่อ Cache Volume
+
+
+----
+## Reference
+
+- [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html)
+- [https://engineerworkshop.com/blog/lvm-thin-provisioning-and-monitoring-storage-use-a-case-study/](https://engineerworkshop.com/blog/lvm-thin-provisioning-and-monitoring-storage-use-a-case-study/)
+- [https://chicorporation.com/what-is-thin-provisioning-and-should-you-use-it/](https://chicorporation.com/what-is-thin-provisioning-and-should-you-use-it/)
+- [https://www.easeus.com/storage-media-recovery/raid-1.html](https://www.easeus.com/storage-media-recovery/raid-1.html)
+- [https://wadhahdaouehi.tn/2013/10/lvm-striping-improve-the-efficiency-of-the-data-io/](https://wadhahdaouehi.tn/2013/10/lvm-striping-improve-the-efficiency-of-the-data-io/)
+- [https://www.tecmint.com/manage-multiple-lvm-disks-using-striping-io/](https://www.tecmint.com/manage-multiple-lvm-disks-using-striping-io/)
+- [https://webhostinggeeks.com/howto/4-lvcreate-command-examples-on-linux/](https://webhostinggeeks.com/howto/4-lvcreate-command-examples-on-linux/)
+- [https://dextutor.com/logical-volume-management-in-linux/](https://dextutor.com/logical-volume-management-in-linux/)
+- [https://www.idn.id/lvm-logical-volume-manager/](https://www.idn.id/lvm-logical-volume-manager/)
+- [https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/logical_volume_manager_administration/lv#snapshot_merge](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/logical_volume_manager_administration/lv#snapshot_merge)
