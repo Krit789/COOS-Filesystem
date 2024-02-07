@@ -481,3 +481,12 @@ mount /dev/<ชื่อ Logical volume> /mnt/<ชื่อ mount point>
 - สร้างไฟล์พิเศษสำหรับ Volume Group  my_vg: `vgmknodes my_vg`
 - ค้นหาและสร้างไฟล์พิเศษ Volume Group ใหม่: `vgscan -m`
 
+---
+## Reference
+
+- [https://www.javatpoint.com/linux-file-ownership](https://www.javatpoint.com/linux-file-ownership)
+- [https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/logical_volume_manager_administration/vg_admin](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/logical_volume_manager_administration/vg_admin)
+- [http://imeenick.blogspot.com/2012/01/logical-volume-management-lvm.html](http://imeenick.blogspot.com/2012/01/logical-volume-management-lvm.html)
+- [https://medium.com/@nareerat.prr/what-is-lvm-24ae24322eff](https://medium.com/@nareerat.prr/what-is-lvm-24ae24322eff)
+- [https://www.idn.id/lvm-logical-volume-manager/](https://www.idn.id/lvm-logical-volume-manager/)
+
