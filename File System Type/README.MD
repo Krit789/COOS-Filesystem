@@ -180,3 +180,11 @@ $ls -l
 | p | Named pipe file |
 | c | Character special file |
 | s | Socket file |
+
+### Reference:
+```
+https://www.computernetworkingnotes.com/linux-tutorials/different-types-of-files-in-linux.html
+https://www.computernetworkingnotes.com/linux-tutorials/linux-file-system-types-explained.html
+https://www.easeus.com/computer-instruction/linux-file-system-type.html
+https://www.geeksforgeeks.org/linux-file-system/
+```
