@@ -74,3 +74,8 @@
 
 > [!TIP]
 >โดยสรุป ขั้นตอนเหล่านี้ช่วยให้คุณสามารถจัดการพื้นที่เก็บข้อมูลบนฮาร์ดดิสก์ได้อย่างยืดหยุ่นและมีประสิทธิภาพมากขึ้นผ่าน Logical Volume Management (LVM)
+
+## Reference
+หนังสือ: UNIX and Linux_System Administration Handbook
+
+ลิ้งค์: [https://medium.com/@nareerat.prr/what-is-lvm-24ae24322eff](https://medium.com/@nareerat.prr/what-is-lvm-24ae24322eff)
