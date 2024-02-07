@@ -98,6 +98,7 @@ lvcreate -l 100 -n testlv testvg /dev/sda1:0-24 /dev/sdb1:50-124
 การสร้าง Striped Logical Volume สำหรับการอ่านและเขียนข้อมูลขนาดใหญ่แบบต่อเนื่อง (Sequential I/O) ช่วย เพิ่มประสิทธิภาพ การเข้าถึงข้อมูลของ LVM 
 
 ![Image](https://wadhahdaouehi.tn/wp-content/uploads/2013/10/LVM-Striping.png)
+
 รูปจาก: [https://wadhahdaouehi.tn/2013/10/lvm-striping-improve-the-efficiency-of-the-data-io/](https://wadhahdaouehi.tn/2013/10/lvm-striping-improve-the-efficiency-of-the-data-io/
 )
 
