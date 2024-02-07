@@ -217,3 +217,6 @@
 - การใช้ `pvremove` จะลบข้อมูลเมตาเดต้าของ LVM บน PV
 - ตรวจสอบให้แน่ใจว่าได้สำรองข้อมูลไว้ก่อนดำเนินการ
 - กรณี PV มีข้อมูลอยู่ ห้ามใช้ `pvremove` โดยตรง ควรนำออกจาก VG ก่อน
+
+## Reference
+ลิ้งค์: [https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/logical_volume_manager_administration/physvol_admin#doc-wrapper](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/logical_volume_manager_administration/physvol_admin#doc-wrapper)
