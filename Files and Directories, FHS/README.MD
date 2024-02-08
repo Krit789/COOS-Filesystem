@@ -36,34 +36,34 @@
 
 | คำสั่ง | คำอธิบาย |
 |---|---|
-| `chmod`| เปลี่ยนแปลงสิทธิ์การเข้าถึงไฟล์ |
-| `chown` | เปลี่ยนแปลงเจ้าของและกลุ่มของไฟล์ |
-| `cp` | คัดลอกไฟล์และไดเร็กทอรี |
-| `date` | แสดงวันที่และเวลา |
-| `dd` | แปลง(convert) และคัดลอก(copy) ไฟล์ |
-| `df` | แสดงการใช้พื้นที่ดิสก์ของระบบไฟล์ |
-| `dmesg` | เป็นการให้แสดงผลเหมือนตอน Boot |
-| `echo` | แสดงข้อความออกทางหน้าจอ |
-| `false` | คืนค่าสถานะทำงานผิดพลาด |
-| `hostname` | แสดงหรือตั้งชื่อโฮสต์ของระบบ |
-| `kill` | คำสั่งสำหรับยกเลิก Process |
-| `ln` | สร้างลิงก์ระหว่างไฟล์ |
-| `login` | เริ่มเซสชันบนระบบ |
-| `ls` | แสดงรายการเนื้อหาของไดเร็กทอรี |
-| `mkdir` | สร้างไดเร็กทอรี |
-| `mknod` | สร้างไฟล์พิเศษแบบบล็อกหรืออักขระ |
-| `more` | แสดงข้อความทีละหน้า |
-| `mount` | ใช้ในการเมาท์ระบบไฟล์จากอุปกรณ์จัดเก็บข้อมูล เช่น ฮาร์ดดิสก์ หรือดิสก์ USB |
-| `mv` | ย้าย/เปลี่ยนชื่อไฟล์ |
-| `ps` | แสดงสถานะของกระบวนการ |
-| `pwd` | แสดงชื่อไดเร็กทอรีทำงานปัจจุบัน |
-| `rm` | ลบไฟล์หรือไดเร็กทอรี |
-| `rmdir` | ลบไดเร็กทอรี |
-| `sed` | ตัวแก้ไขข้อความแบบสตรีม |
-| `sh` | คำสั่งเรียกใช้ Bourne again shell ของระบบ Unix,Linux |
-| `stty` | แก้ไขการตั้งค่าของการแสดงผลทาง terminal หรือ print การตั้งค่าของ terminal ณ ปัจจุบัน|
-| `su` | เปลี่ยน user ID |
-| `sync` | flush บัฟเฟอร์เขียนลง disk เพื่อให้ค่าใน cache กับค่าในที่เก็บข้อมูลตรงกัน |
+| [`chmod`](#chmod)| เปลี่ยนแปลงสิทธิ์การเข้าถึงไฟล์ |
+| [`chown`](#chown) | เปลี่ยนแปลงเจ้าของและกลุ่มของไฟล์ |
+| [`cp`](#cp) | คัดลอกไฟล์และไดเร็กทอรี |
+| [`date`](#date) | แสดงวันที่และเวลา |
+| [`dd`](#dd) | แปลง(convert) และคัดลอก(copy) ไฟล์ |
+| [`df`](#df) | แสดงการใช้พื้นที่ดิสก์ของระบบไฟล์ |
+| [`dmesg`](#dmesg) | เป็นการให้แสดงผลเหมือนตอน Boot |
+| [`echo`](#echo) | แสดงข้อความออกทางหน้าจอ |
+| [`false`](#false) | คืนค่าสถานะทำงานผิดพลาด |
+| [`hostname`](#hostname) | แสดงหรือตั้งชื่อโฮสต์ของระบบ |
+| [`kill`](#kill) | คำสั่งสำหรับยกเลิก Process |
+| [`ln`](#ln) | สร้างลิงก์ระหว่างไฟล์ |
+| [`login`](#login) | เริ่มเซสชันบนระบบ |
+| [`ls`](#ls) | แสดงรายการเนื้อหาของไดเร็กทอรี |
+| [`mkdir`](#mkdir) | สร้างไดเร็กทอรี |
+| [`mknod`](#mknod) | สร้างไฟล์พิเศษแบบบล็อกหรืออักขระ |
+| [`more`](#more) | แสดงข้อความทีละหน้า |
+| [`mount`](#mount) | ใช้ในการเมาท์ระบบไฟล์จากอุปกรณ์จัดเก็บข้อมูล เช่น ฮาร์ดดิสก์ หรือดิสก์ USB |
+| [`mv`](#mv) | ย้าย/เปลี่ยนชื่อไฟล์ |
+| [`ps`](#ps) | แสดงสถานะของกระบวนการ |
+| [`pwd`](#pwd) | แสดงชื่อไดเร็กทอรีทำงานปัจจุบัน |
+| [`rm`](#rm) | ลบไฟล์หรือไดเร็กทอรี |
+| [`rmdir`](#rmdir) | ลบไดเร็กทอรี |
+| [`sed`](#sed) | ตัวแก้ไขข้อความแบบสตรีม |
+| [`sh`](#sh) | คำสั่งเรียกใช้ Bourne again shell ของระบบ Unix,Linux |
+| [`stty`](#stty) | แก้ไขการตั้งค่าของการแสดงผลทาง terminal หรือ print การตั้งค่าของ terminal ณ ปัจจุบัน|
+| [`su`](#su) | เปลี่ยน user login |
+| [`sync`](#sync) | flush บัฟเฟอร์เขียนลง disk เพื่อให้ค่าใน cache กับค่าในที่เก็บข้อมูลตรงกัน |
 
 # /boot
 &nbsp;&nbsp;&nbsp;&nbsp;boot directory นั้นเก็บไฟล์ทั้งหมดที่เกี่ยวข้องและใช้งานในกระบวนการบูธ โดย /boot จะถูกใช้ก่อนที่ kernel จะ execute user-mode program แต่ก็จะมีไฟล์บางไฟล์ที่ไม่ได้ใช้ในตอนบูธ เช่น configuration file (GRUB) และ map installer
@@ -122,3 +122,400 @@ ffffffff83921858 d __event_exit__chmod
  เป็น subdirectory ที่มีไฟล์ GRUB configuration รวมถึง boot-up image<br>&nbsp;&nbsp;&nbsp;&nbsp;
  GNU GRand Unified Boot loader (GRUB) คือ เป็นระบบ boot ที่ทำโดย GNU project ซี่งเป็น program ที่ทำให้สามารถเลือกระบบปฏิบัติการที่ลงไว้หรือ kernel เพื่อทำการโหลดตอนกระบวนการ boot และทำให้ user สามารถส่ง argument ไปยัง kernel ได้
  * `` :
+
+---
+## `chmod`
+```
+chmod [option] [กำหนดสิทธิ์]  file/directory
+```
+ซึ่งการกำหนดสิทธิ์ สามารถใช้ได้สองรูปแบบ คือ <br>
+- ใช้ตัวเลข โดยที่ read=4, write=2, execute=1 (ex. rwx=7, r-x=5, --x=1)<br>
+- กำหนดโดยใช้สัญลักษณ์ u=user owner, g=group owner, o=other (ex. u=rwx) <br>
+### ตัวอย่าง
+ถ้าต้องการกำหนดสิทธิ์ของ Folder SHE ให้ user owner สามารถ rwx, group owner สามารถ rx, other ไม่สามารถทำอะไรได้เลย
+```
+chmod 750 SHE
+หรือ
+chmod u=rwx,g=rx,o= SHE
+```
+อีกตัวอย่าง คือ ถ้าต้องการให้ทุกคนทำอะไรกับ SHE ก็ได้
+```
+chmod 777 SHE
+หรือ
+chmod ugo=rwx SHE
+```
+---
+## `chown`
+```
+chown [option] [userowner] [:groupowner]  file/directory
+```
+ใช้เพื่อเปลี่ยน owner ในกรณีที่ตั้งผิดหรืออยากแก้ไข owner โดยใช้ได้ทั้ง user หรือ group owner 
+### ตัวอย่าง
+ถ้าต้องการเปลี่ยน owner ของ Folder SHE ให้ user owner คือ User02 และ group owner เปลี่ยนเป็น lazyboy
+```
+chown User02 SHE
+chown :lazyboy SHE
+
+หรือสามารถเขียน
+
+chown User02 :lazyboy SHE
+
+```
+---
+## `cp`
+```
+cp [option] [path/filename] [path/destination] 
+```
+ใช้เพื่อ copy file ไปไว้ใน destination ที่ต้องการ
+### ตัวอย่าง
+ถ้าต้องการ copy file จาก /path/filetarget.txt ไปไว้ที่ /despath
+ซึ่ง despath เป็น directory ที่จะใส่ไฟล์
+```
+cp /path/filetarget.txt /despath
+```
+---
+## `date`
+```
+ date [option] [+FORMAT]
+```
+ใช้เพื่อแสดงเวลา ซึ่งเป็นเวลาปัจจุบันอ้างอิงกับเวลาในเครื่อง server
+### ตัวอย่าง
+ถ้าต้องการ แสดงเวลา year/month/day hour:min:sec
+
+```
+date +'%Y/%m/%d %H:%M:%S'
+
+หรือ ถ้าไม่ใส่ format จะได้แบบนี้
+
+date
+ผลลัพธ์ -> Thu Feb 8 11:26:38 AM UTC 2024
+```
+---
+## `dd`
+```
+ dd if=<ตำแหน่ง directory/file ที่ต้องการ> of=<ตำแหน่งที่จะเอาไฟล์ ไปไว้> [Options]
+```
+if ย่อมาจาก input file และ of ย่อมาจาก output file <br>
+ใช้ในการสร้าง file backup ข้อมูลภายใน hardisk ที่เชื่อมต่ออยู่ และทำการ wirte ลง file ที่กำหนด
+### ตัวอย่าง
+ถ้าต้องการ backup file และ restore จาก backup image
+
+```
+ทำการ backup file ใส่ backup image
+dd if =/dev/sda2 of=~/hdadisk.img
+
+restore จาก backup image
+dd if=hdadisk.img of=/dev/sdb3
+```
+---
+## `df`
+```
+ df [option] [file]
+```
+ใช้ในการเช็กข้อมูล disk partition ในเครื่อง เช่น ชื่อ path, ขนาด, ปริมาณใช้งาน พื้นที่ disk แต่ละ patition (ไม่มีในตัวอย่างนะครับ)
+### ตัวอย่าง
+ถ้าต้องการแสดงพื้นที่ disk หน่วย kb และ mb/gb
+
+```
+หน่วย kb
+df
+
+หน่วย mb/gb
+df -h
+```
+---
+## `dmesg`
+```
+dmesg [option] [file]
+```
+ใช้ในการ control หรือ print ข้อมูลใน kernel ring buffer <br>
+ส่วนใหญ่ใช้ดู error หรือตรวจสอบการทำงานระบบ
+### ตัวอย่าง
+ถ้าต้องการเอาข้อมูล bootup messages ไปส่งให้ใครสักคนดู โดยต้องการไฟล์ชื่อ boot.messages
+
+```
+dmesg > boot.messages
+```
+ว้าว ทีนี้ผมก็สามารถเอาไฟล์ boot.messages ไปส่งได้เลยโดยไม่ต้องมานั่งพิมพ์เอง
+
+---
+## `echo`
+```
+echo [option] [string]
+```
+ใช้ในการแสดงผลข้อความบนหน้าจอ terminal
+### ตัวอย่าง
+ถ้าต้องการแสดงข้อความ Love You ที่ terminal
+
+```
+echo "Love You"
+```
+---
+## `false`
+```
+false
+```
+ใช้สำหรับ logic ส่งค่าเป็นเท็จออกมา นิยมใช้เพื่อนหยุดการทำงาน หรือ เช็คเงื่อนไข
+### ตัวอย่าง
+ตัวอย่างนี้ อาจจะสับสนเล็กน้อยคือ ถ้า if แล้วเป็นจริงจะแสดงข้อความ What แต่ถ้าไม่ใช่จะแสดงข้อความ No
+
+```
+if false; then echo "What"; else echo "No"; fi
+```
+---
+## `hostname`
+```
+hostname [option]
+```
+ใช้ในการแสดงข้อมูลชื่อของเครื่อง server
+### ตัวอย่าง
+ต้องการทราบชื่อ server และ ip address
+
+```
+ต้องการทราบชื่อ
+hostname
+
+ต้องการทราบ ip address
+hostname -i
+```
+---
+## `kill`
+```
+kill [option] <process ID>
+```
+ใช้ในการยกเลิกการทำงานของ process ซึ่งถ้าเรายกเลิกตัวที่มี sub process ตัว sub process ก็จะยกเลิกด้วย สามารถยกเลิกได้ด้วย process ID
+### ตัวอย่าง
+ต้องการยกเลิกการทำงาน process id 0
+
+```
+kill 0
+
+ต้องการยกเลิกทันที
+kill -9 0
+```
+---
+## `ln`
+```
+ln <file ต้นทาง> <file ที่ลิ้งค์ไปต้นทาง>
+```
+ใช้ในการสร้างลิ้งค์ไปยังไฟล์ เพื่อเรียกใช้งานไฟล์ที่เราต้องการแต่เราสามารถเรียกผ่านไฟล์อื่นได้
+### ตัวอย่าง
+ต้องการใช้การทำงานของ MAX ผ่านการเรียกใช้ mx
+
+```
+ln MAX mx
+cat mx
+ผลลัพธ์ -> ข้างใน MAX
+```
+---
+## `login`
+```
+login <username>
+```
+ใช้ในการเริ่มต้น session หรือ การเข้าใช้ระบบของ user ซึ่งเมื่อใช้คำสั่งก็จำเป็นต้องใส่รหัสให้ถูกด้วยจึงจะสามารถ login ได้
+### ตัวอย่าง
+ต้องการเข้าสู่ระบบ username: GAME
+
+```
+login GAME
+```
+---
+## `ls`
+```
+ls [option] [file]
+```
+ใช้ในการแสดงข้อมูลใน directory ซึ่งนิยมนำมาใช้คู่กับ option ในการแสดงข้อมูล เพราะจะช่วยกรองหรือแสดงส่วนที่ต้องการได้ง่าย
+### ตัวอย่าง
+ต้องการแสดงข้อมูลใน directory ปัจจุบัน และ แสดงข้อมูลใน directory /user/passwd
+
+```
+ls
+
+ls /user/passwd
+```
+---
+## `mkdir`
+```
+mkdir [option] <directory>
+```
+ใช้ในการสร้าง directory
+### ตัวอย่าง
+ต้องการสร้าง directory Book
+
+```
+mkdir Book
+```
+---
+## `mknod`
+```
+mknod [option] <name> <type> [major minor]
+```
+ใช้ในการสร้างไฟล์พิเศษ เช่น ไฟล์บล็อค(buffered) ไฟล์ตัวอักษร(unbuffered) pipe file(FIFO) <br>
+พวกที่ใช้ในการส่งข้อมูล
+### ตัวอย่าง
+ต้องการสร้างไฟล์ block file และ character file ที่อุปกรณ์1และอุปกรณ์2
+และ สร้าง pipe ชื่อ pipelink1
+```
+mknod /dev/blockfile  b 1 2
+
+mknod /dev/characterfile  c 1 2
+
+mknod pipelink1 p
+```
+---
+## `more`
+```
+more [option] <file>
+```
+ใช้ในการอ่านข้อมูลและค้นหาข้อมูลใน file
+### ตัวอย่าง
+ต้องการแสดงข้อมูล file1 ตั้งแต่บรรทัดที่ 3 ขึ้นไป
+```
+แสดงทุกบรรทัด
+more file1
+
+แสดงตั้งแต่บรรทัดที่3
+more +3 file1
+```
+---
+## `mount`
+```
+mount อุปกรณ์
+mount <device> <path>
+
+การ remount
+mount --bind <olddir> <newdir>
+```
+ใช้ในการเชื่อมต่ออุปกรณ์ที่เสียบอยู่เข้ากับ file system
+### ตัวอย่าง
+ต้องการเชื่อมอุปกรณ์ device1 เข้ากับ /path
+```
+mount device1 /path
+```
+---
+## `mv`
+```
+mv [option] <old path> <new path>
+mv [option] -t <directory> <source>
+```
+ใช้ในการย้ายไฟล์ เปลี่ยนชื่อไฟล์ ย้ายdirectory
+### ตัวอย่าง
+ต้องการนำ file1 ไปเก็บที่ directory test และเปลี่ยนชื่อเป็น file0 จากนั้นย้าย test ไปที่ temp
+```
+mv file1 test/.
+
+mv file1 file0
+
+mv test /tmp
+```
+---
+## `ps`
+```
+ps [option]
+```
+ใช้ในการแสดง process ที่ทำงานอยู่
+### ตัวอย่าง
+ต้องการแสดง process ทั้งหมดที่ทำงานอยู่
+```
+ps
+```
+---
+## `pwd`
+```
+pwd [option]
+```
+ใช้ในการแสดง directory หรือ path ที่อยู่ปัจจุบัน หรือ fullpath นั่นเอง
+### ตัวอย่าง
+ต้องการแสดง path ที่กำลังทำงานอยู่
+```
+pwd
+```
+---
+## `rm`
+```
+rm [option] <file/directory>
+```
+ใช้ในการลบไฟล์ หรือ directory
+### ตัวอย่าง
+ต้องการลบไฟล์ file1 และ directory dirtarget
+```
+rm file1
+
+เพิ่ม -rf ในกรณีที่ข้างใน directory มีไฟล์อยู่
+rm -rf dirtarget
+```
+---
+## `rmdir`
+```
+rmdir [option] <directory>
+```
+ใช้ในการลบ directory
+### ตัวอย่าง
+ต้องการลบ directory dirtarget
+```
+rmdir dirtarget
+```
+---
+## `sed`
+```
+sed [option] {script-only-if-no-other-script} [input-file]
+```
+ใช้ในการจัดรูปแบบข้อความให้แสดงผลในแบบที่ต้องการ หรือทำให้อ่านง่ายขึ้น
+### ตัวอย่าง
+ต้องการให้ขึ้นบรรทัดห่างกันเพิ่มอีก 1 บรรทัด ในตอนที่แสดง file1
+```
+sed G file1
+```
+---
+## `sh`
+```
+sh [option] [file.sh]
+```
+ใช้ในการ run file ที่เป็น .sh แต่ถ้าใช้แค่ sh โดยไม่ใส่ไฟล์มันจะเปิดหน้าต่างให้เขียน script ไปเรื่อยๆและ run ทีละลำดับตามที่เขียน
+### ตัวอย่าง
+ต้องการให้ run file1.sh และต้องการเขียน script และ run ต่อเนื่องด้วยตัวเอง
+```
+sh file.sh
+
+sh
+```
+---
+## `stty`
+```
+stty [-F DEVICE | --file=DEVICE] [SETTING]
+```
+ใช้ในการแก้ไขการตั้งค่าของการแสดงผลทาง terminal และควบคุม parameter ของอุปกรณ์ที่เชื่อมต่อ
+### ตัวอย่าง
+ต้องการให้ปิดการแสดงผลของ echo (ถ้าเราปิด echo ตอนเราพิมพ์ก็จะมองไม่เห็นเหมือนกัน)
+```
+stty -echo
+```
+---
+## `su`
+```
+su [option] [userid]
+```
+ใช้ในการ login ด้วย user id อื่น และ ถ้าใส่แค่ su จะเป็นการ login เข้า root แต่ก่อนจะเข้าได้ ทั้งสองต้องใส่รหัส
+### ตัวอย่าง
+ต้องการให้ login ด้วย username: Jake
+```
+su - Jake
+
+login root
+su
+```
+---
+## `sync`
+```
+sync [target1] [target2] ...
+```
+ใช้ในการทำให้ค่าทั้งหมดที่กำหนด ตรงกัน
+### ตัวอย่าง
+ต้องการไฟล์ $HOME/.bashrc $HOME/my/important/file sync ตรงกันและต้องการให้ทั้งหมด sync ตรงกัน
+```
+sync $HOME/.bashrc $HOME/my/important/file
+
+ทั้งหมด
+sync
+```
+---
