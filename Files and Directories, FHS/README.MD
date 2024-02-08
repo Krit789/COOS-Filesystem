@@ -36,11 +36,11 @@
 
 | คำสั่ง | คำอธิบาย |
 |---|---|
-| `chmod`| เปลี่ยนแปลงสิทธิ์การเข้าถึงไฟล์ |
-| `chown` | เปลี่ยนแปลงเจ้าของและกลุ่มของไฟล์ |
-| `cp` | คัดลอกไฟล์และไดเร็กทอรี |
-| `date` | แสดงวันที่และเวลา |
-| `dd` | แปลง(convert) และคัดลอก(copy) ไฟล์ |
+| [`chmod`](#chmod)| เปลี่ยนแปลงสิทธิ์การเข้าถึงไฟล์ |
+| [`chown`](#chown) | เปลี่ยนแปลงเจ้าของและกลุ่มของไฟล์ |
+| [`cp`](#cp) | คัดลอกไฟล์และไดเร็กทอรี |
+| [`date`](#date) | แสดงวันที่และเวลา |
+| [`dd`](#dd) | แปลง(convert) และคัดลอก(copy) ไฟล์ |
 | `df` | แสดงการใช้พื้นที่ดิสก์ของระบบไฟล์ |
 | `dmesg` | เป็นการให้แสดงผลเหมือนตอน Boot |
 | `echo` | แสดงข้อความออกทางหน้าจอ |
@@ -64,3 +64,90 @@
 | `stty` | แก้ไขการตั้งค่าของการแสดงผลทาง terminal หรือ print การตั้งค่าของ terminal ณ ปัจจุบัน|
 | `su` | เปลี่ยน user ID |
 | `sync` | flush บัฟเฟอร์เขียนลง disk เพื่อให้ค่าใน cache กับค่าในที่เก็บข้อมูลตรงกัน |
+
+
+---
+## `chmod`
+```
+chmod [option] [กำหนดสิทธิ์]  file/directory
+```
+ซึ่งการกำหนดสิทธิ์ สามารถใช้ได้สองรูปแบบ คือ <br>
+- ใช้ตัวเลข โดยที่ read=4, write=2, execute=1 (ex. rwx=7, r-x=5, --x=1)<br>
+- กำหนดโดยใช้สัญลักษณ์ u=user owner, g=group owner, o=other (ex. u=rwx) <br>
+### ตัวอย่าง
+ถ้าต้องการกำหนดสิทธิ์ของ Folder SHE ให้ user owner สามารถ rwx, group owner สามารถ rx, other ไม่สามารถทำอะไรได้เลย
+```
+chmod 750 SHE
+หรือ
+chmod u=rwx,g=rx,o= SHE
+```
+อีกตัวอย่าง คือ ถ้าต้องการให้ทุกคนทำอะไรกับ SHE ก็ได้
+```
+chmod 777 SHE
+หรือ
+chmod ugo=rwx SHE
+```
+---
+## `chown`
+```
+chown [option] [userowner] [:groupowner]  file/directory
+```
+ใช้เพื่อเปลี่ยน owner ในกรณีที่ตั้งผิดหรืออยากแก้ไข owner โดยใช้ได้ทั้ง user หรือ group owner 
+### ตัวอย่าง
+ถ้าต้องการเปลี่ยน owner ของ Folder SHE ให้ user owner คือ User02 และ group owner เปลี่ยนเป็น lazyboy
+```
+chown User02 SHE
+chown :lazyboy SHE
+
+หรือสามารถเขียน
+
+chown User02 :lazyboy SHE
+
+```
+---
+## `cp`
+```
+cp [option] [path/filename] [path/destination] 
+```
+ใช้เพื่อ copy file ไปไว้ใน destination ที่ต้องการ
+### ตัวอย่าง
+ถ้าต้องการ copy file จาก /path/filetarget.txt ไปไว้ที่ /despath
+ซึ่ง despath เป็น directory ที่จะใส่ไฟล์
+```
+cp /path/filetarget.txt /despath
+```
+---
+## `date`
+```
+ date [option] [+FORMAT]
+```
+ใช้เพื่อแสดงเวลา ซึ่งเป็นเวลาปัจจุบันอ้างอิงกับเวลาในเครื่อง server
+### ตัวอย่าง
+ถ้าต้องการ แสดงเวลา year/month/day hour:min:sec
+
+```
+date +'%Y/%m/%d %H:%M:%S'
+
+หรือ ถ้าไม่ใส่ format จะได้แบบนี้
+
+date
+ผลลัพธ์ -> Thu Feb 8 11:26:38 AM UTC 2024
+```
+---
+## `dd`
+```
+ dd if=<ตำแหน่ง directory/file ที่ต้องการ> of=<ตำแหน่งที่จะเอาไฟล์ ไปไว้> [Options]
+```
+
+### ตัวอย่าง
+ถ้าต้องการ แสดงเวลา year/month/day hour:min:sec
+
+```
+date +'%Y/%m/%d %H:%M:%S'
+
+หรือ ถ้าไม่ใส่ format จะได้แบบนี้
+
+date
+ผลลัพธ์ -> Thu Feb 8 11:26:38 AM UTC 2024
+```
+---
