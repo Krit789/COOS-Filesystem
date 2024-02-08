@@ -168,7 +168,47 @@ brw-rw---- 1 root disk      7,   3 Feb  8 19:09 loop3
 ```
 จะเห็นว่ามีบางไฟล์ที่ขึ้นว่าเป็นประเภท b (block) หรือ c (character) โดย device เหล่านี้จะมีเลขที่เกี่ยวข้องกับมันอยู่แทนที่จะเป็นขนาดไฟล์ ซึ่งเลขเหล่านี้เป็นตัวระบุ device ให้กับระบบ
 
+# /etc
+
+`/etc` เป็นเหมือนมันสมองของระบบ จัดเก็บไฟล์การตั้งค่าทั้งหมดที่เกี่ยวข้องกับระบบไว้ทั้งใน /etc และใน subdirectory ซึ่งไฟล์การตั้งค่าหรือไฟล์ configuration ที่ใช้ควบคุมการทำงานของโปรแกรม โดยเราควรที่จะ backup directory นี้บ่อยๆเพื่อถ้าเราลงระบบปฏิบัติการใหม่หรือ config สูญหายจะได้ไม่ต้องเสียเวลา config ใหม่
+
+### ตัวอย่าง file หรือ subdirectory ใน /etc
+* /etc/fstab : เป็นไฟล์ config สำหรับการ `mount` และ `supermount` (mount คือการเชื่อมต่อ file system ของอุปกรณ์เก็บข้อมูล เช่น USB, flashdrive หรือ harddisk เข้ากับ directory ที่เจาะจง) ซึ่งไฟล์นี้จะแสดงรายการ file system ที่ถูก mount อัตโนมัติตอน startup ด้วยคำสั่ง `mount -a`
+* /etc/passwd : เป็นไฟล์ที่จัดเก็บ password ของ user ที่ถูกเข้ารหัสและมีข้อมูลที่เกี่ยวข้องกับ user อื่นๆเช่น username, home directory เป็นต้น
+```
+usbmux:x:113:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+nitruzx:x:1000:1000:Tj:/home/nitruzx:/bin/bash
+lxd:x:999:100::/var/snap/lxd/common/lxd:/bin/false
+mgr01:x:1001:1001::/home/mgr01:/bin/sh
+mgr02:x:1002:1002::/home/mgr02:/bin/sh
+dev01:x:1003:1004::/home/dev01:/bin/sh
+dev02:x:1004:1005::/home/dev02:/bin/sh
+sale01:x:1005:1007::/home/sale01:/bin/sh
+sale02:x:1006:1008::/home/sale02:/bin/sh
+Kat1:x:1007:1010::/Kitkat/Kat1:/bin/bash
+Kat2:x:1008:1011::/Kitkat/Kat2:/bin/bash
+Kat3:x:1009:1012::/Kitkat/Kat3:/bin/bash
+Kat4:x:1010:1013::/Kitkat/Kat4:/bin/bash
+```
+ * /etc/shadow : จัดเก็บ password ของ user ที่เอามาจาก /etc/passwd แต่จตะมีการ hash เพิ่มเข้าไปทำให้ไม่สามารถอ่านได้ยกเว้น root user ทำให้การถูกล่วงรู้ password นั้นยากขึ้น
+ * /etc/hosts : ไฟล์นี้ระบุชื่อของเครื่องและ IP โดยอาจมี domain ของบาง IP ซึ่งไฟล์นี้จะมี IP เข้ามาเรื่อยๆหากเครื่องเชื่อมต่อกับ network
+ ```
+ ::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ ```
+ * /etc/profile : เป็นไฟล์และคำสั่งที่จะถูก execute ณ ตอน login หรือตอน startup โดย Bourn หรือ C shell ทำให้ admin ของระบบสามารถตั้งค่า default ให้กับทุก user ได้
+ * /etc/network/ : ไฟล์การตั้งค่าเกี่ยวกับ network เช่นพวก interface การเชื่อมต่อ หรือ dhcp
+ * /etc/networks : แสดงผลรายการของ network ที่เครื่องนี้อยู่ ณ ปัจจุบัน
+```
+# symbolic names for networks, see networks(5) for more information
+link-local 169.254.0.0
+```
 ---
+
+# คำสั่งใน /bin
 ## `chmod`
 ```
 chmod [option] [กำหนดสิทธิ์]  file/directory
@@ -567,4 +607,6 @@ sync
  # Reference
  * https://access.redhat.com/documentation/th-th/red_hat_enterprise_linux/5/html/installation_guide/s1-grub-whatis
  * https://docs.oracle.com/en/operating-systems/oracle-linux/6/admin/ol_about_devices.html
- * `` :
+ * https://saixiii.com
+ * https://poundxi.com
+ * https://www.ibm.com
