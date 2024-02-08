@@ -21,7 +21,7 @@ bzip2: เครื่องมือบีบอัดไฟล์ที่ม�
 - bzcat: ดูเนื้อหาของไฟล์ .bz2 โดยไม่ต้องคลายการบีบอัด
 - bzip2recover: พยายามกู้คืนข้อมูลจากไฟล์ .bz2 ที่เสียหาย
 
-## option ของ bzip2
+#### คำสั่ง option ต่างๆ ของ bzip2
 
 | option | Description          |
 |-----------|---------------|
@@ -311,9 +311,13 @@ zip -l archive.zip
 | -x  | เพิ่มเฉพาะไฟล์ที่มีการแก้ไขเข้าไปใน tar file     |
 | -v  |เปิดใช้งานโหมด verbose โดยละเอียดเกี่ยวกับโครงสร้างไฟล์ zip เมื่อใช้เพียงอย่างเดียว  |
 
+### Reference:
+```
+ https://medium.com/@cuncis/linux-archiving-commands-a-beginners-guide-to-efficient-file-management-8448f7403e95 
+ https://www.geeksforgeeks.org/tar-command-linux-examples/ 
+ https://www.geeksforgeeks.org/gzip-command-linux/ 
+ https://www.geeksforgeeks.org/zip-command-in-linux-with-examples/
+
+```
 
 
-<!-- https://medium.com/@cuncis/linux-archiving-commands-a-beginners-guide-to-efficient-file-management-8448f7403e95 -->
-<!-- https://www.geeksforgeeks.org/tar-command-linux-examples/ -->
-<!-- https://www.geeksforgeeks.org/gzip-command-linux/ -->
-<!-- https://www.geeksforgeeks.org/zip-command-in-linux-with-examples/ -->
