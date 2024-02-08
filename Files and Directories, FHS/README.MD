@@ -121,4 +121,53 @@ ffffffff83921858 d __event_exit__chmod
  * `/grub` :
  เป็น subdirectory ที่มีไฟล์ GRUB configuration รวมถึง boot-up image<br>&nbsp;&nbsp;&nbsp;&nbsp;
  GNU GRand Unified Boot loader (GRUB) คือ เป็นระบบ boot ที่ทำโดย GNU project ซี่งเป็น program ที่ทำให้สามารถเลือกระบบปฏิบัติการที่ลงไว้หรือ kernel เพื่อทำการโหลดตอนกระบวนการ boot และทำให้ user สามารถส่ง argument ไปยัง kernel ได้
- * `` :
+
+# /dev
+
+`/dev` จัดเก็บไฟล์พิเศษที่เกี่ยวข้องกับ device หรืออุปกรณ์ต่อพ่วงอื่นๆ โดยไฟล์ใน directory นี้จะเป็นเหมือน interface เพื่อให้สามารถ interact กับอุปกรณ์ hardware เช่น harddrive, CD-ROM, speakers, printers หรือ modems ได้
+
+โดย `/dev` มี subdirectory อยู่หลายอัน ซึ่งแต่ละอันก็จัดเก็บไฟล์ device ที่เกี่ยวข้องกับ device บางแค่ประเภท อย่างเช่น `/dev/disk/id-by-uuid` จัดเก็บไฟล์ device สำหรับ harddisk ที่มีชื่อตาม universally unique identifier (UUID) ซึ่งไฟล์ device พวกนี้ใน subdirectory เป็น symbolic link ไปยังไฟล์ device ใน `/dev` ทำให้เราสามารถเข้าถึง device ได้โดยใช้ไฟล์ใน `/dev` หรือไฟล์ที่อยู่ใน `/dev/disk/id-by-uuid` เป็นต้น
+
+ถ้าเราลอง ls -l เพื่อแสดงรายการไฟล์ใน /dev มา จะได้ผลลัพธ์ดังนี้ : 
+```
+crw-r--r-- 1 root root     10, 235 Feb  8 19:09 autofs
+drwxr-xr-x 2 root root         320 Feb  8 19:14 block
+drwxr-xr-x 2 root root          80 Feb  8 19:09 bsg
+crw-rw---- 1 root disk     10, 234 Feb  8 19:09 btrfs-control
+drwxr-xr-x 3 root root          60 Feb  8 19:09 bus
+lrwxrwxrwx 1 root root           3 Feb  8 19:09 cdrom -> sr0
+drwxr-xr-x 2 root root        3760 Feb  8 19:09 char
+crw--w---- 1 root tty       5,   1 Feb  8 19:09 console
+lrwxrwxrwx 1 root root          11 Feb  8 19:09 core -> /proc/kcore
+drwxr-xr-x 6 root root         120 Feb  8 19:09 cpu
+crw------- 1 root root     10, 124 Feb  8 19:09 cpu_dma_latency
+crw------- 1 root root     10, 203 Feb  8 19:09 cuse
+drwxr-xr-x 7 root root         140 Feb  8 19:09 disk
+brw-rw---- 1 root disk    253,   0 Feb  8 19:09 dm-0
+drwxr-xr-x 2 root root          60 Feb  8 19:09 dma_heap
+drwxr-xr-x 3 root root         100 Feb  8 19:09 dri
+crw------- 1 root root     10, 126 Feb  8 19:09 ecryptfs
+crw-rw---- 1 root video    29,   0 Feb  8 19:09 fb0
+lrwxrwxrwx 1 root root          13 Feb  8 19:09 fd -> /proc/self/fd
+crw-rw-rw- 1 root root      1,   7 Feb  8 19:09 full
+crw-rw-rw- 1 root root     10, 229 Feb  8 19:09 fuse
+crw------- 1 root root    238,   0 Feb  8 19:09 hidraw0
+crw------- 1 root root     10, 228 Feb  8 19:09 hpet
+drwxr-xr-x 2 root root           0 Feb  8 19:09 hugepages
+crw------- 1 root root     10, 183 Feb  8 19:09 hwrng
+crw------- 1 root root     89,   0 Feb  8 19:09 i2c-0
+lrwxrwxrwx 1 root root          12 Feb  8 19:09 initctl -> /run/initctl
+drwxr-xr-x 4 root root         340 Feb  8 19:09 input
+crw-r--r-- 1 root root      1,  11 Feb  8 19:09 kmsg
+lrwxrwxrwx 1 root root          28 Feb  8 19:09 log -> /run/systemd/journal/dev-log
+brw-rw---- 1 root disk      7,   0 Feb  8 19:09 loop0
+brw-rw---- 1 root disk      7,   1 Feb  8 19:09 loop1
+brw-rw---- 1 root disk      7,   2 Feb  8 19:09 loop2
+brw-rw---- 1 root disk      7,   3 Feb  8 19:09 loop3
+...
+```
+จะเห็นว่ามีบางไฟล์ที่ขึ้นว่าเป็นประเภท b (block) หรือ c (character) โดย device เหล่านี้จะมีเลขที่เกี่ยวข้องกับมันอยู่แทนที่จะเป็นขนาดไฟล์ ซึ่งเลขเหล่านี้เป็นตัวระบุ device ให้กับระบบ
+
+ # Reference
+ * https://access.redhat.com/documentation/th-th/red_hat_enterprise_linux/5/html/installation_guide/s1-grub-whatis
+ * https://docs.oracle.com/en/operating-systems/oracle-linux/6/admin/ol_about_devices.html
