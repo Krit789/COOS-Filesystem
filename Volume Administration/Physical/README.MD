@@ -219,4 +219,14 @@
 - กรณี PV มีข้อมูลอยู่ ห้ามใช้ `pvremove` โดยตรง ควรนำออกจาก VG ก่อน
 
 ## Reference
-ลิ้งค์: [https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/logical_volume_manager_administration/physvol_admin#doc-wrapper](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/logical_volume_manager_administration/physvol_admin#doc-wrapper)
+- [https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/logical_volume_manager_administration/physvol_admin#doc-wrapper](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/logical_volume_manager_administration/physvol_admin#doc-wrapper)
+
+- [https://medium.com/@yhakimi/lvm-how-to-create-and-extend-a-logical-volume-in-linux-9744f27eacfe](https://medium.com/@yhakimi/lvm-how-to-create-and-extend-a-logical-volume-in-linux-9744f27eacfe)
+
+- [https://www.digitalocean.com/community/tutorials/an-introduction-to-lvm-concepts-terminology-and-operations](https://www.digitalocean.com/community/tutorials/an-introduction-to-lvm-concepts-terminology-and-operations)
+- `UNIX AND LINUX SYSTEM
+ADMINISTRATION
+HANDBOOK
+FIFTH EDITION BOOK` with James Garnett, Fabrizio Branca, and Adrian Mouat
+- [https://man7.org/linux/man-pages/man1/tar.1.html](https://man7.org/linux/man-pages/man1/tar.1.html)
+- [https://www.ibm.com/docs/es/aix/7.1?topic=subsystem-physical-volumes](https://www.ibm.com/docs/es/aix/7.1?topic=subsystem-physical-volumes)

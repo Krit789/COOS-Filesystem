@@ -2,6 +2,10 @@
 ### การจัดการระดับตรรก (Logical Volume Management - LVM)
 &nbsp;&nbsp;&nbsp;&nbsp;เป็นเทคนิคการจัดการพื้นที่เก็บข้อมูลบนฮาร์ดดิสก์ โดยมีข้อดีเหนือการแบ่งพาร์ติชันแบบเดิมๆ LVM ทำหน้าที่เหมือนเป็นตัวกลางในการบริหารจัดการพื้นที่ โดยแบ่งฮาร์ดดิสก์หลายๆ ตัวออกมาเป็นกลุ่มที่เรียกว่า "กลุ่มวอลุ่ม" (Volume Group) จากนั้นแบ่งพื้นที่ภายในกลุ่มวอลุ่มนั้นออกเป็น "วอลุ่มตรรก" (Logical Volume) อีกที ซึ่งวอลุ่มตรรกนี้จะมองเหมือนพาร์ติชันทั่วไป แต่มีความยืดหยุ่นและใช้งานได้สะดวกกว่า
 
+![Image](https://cdn.thefastcode.com/static/article_img/43113.jpg)
+
+รูปจาก: [https://www.thefastcode.com/th-thb/article/what-is-logical-volume-management-and-how-do-you-enable-it-in-ubuntu](https://www.thefastcode.com/th-thb/article/what-is-logical-volume-management-and-how-do-you-enable-it-in-ubuntu)
+
 > [!NOTE] 
 >ความสามารถพิเศษของ LVM:
 >- ย้ายวอลุ่มตรรกไปมาระหว่างฮาร์ดดิสก์: ไม่จำเป็นต้องแบ่งพาร์ติชันตายตัว สามารถย้ายข้อมูลระหว่างฮาร์ดดิสก์ได้โดยไม่กระทบการใช้งาน
@@ -9,6 +13,10 @@
 >- สร้าง Snapshot ของวอลุ่มตรรก: สร้างสำเนาข้อมูลของวอลุ่มในขณะนั้น เหมือนการถ่ายภาพสถานะข้อมูล ณ เวลาที่ต้องการ
 >- เปลี่ยนฮาร์ดดิสก์แบบ Hot-plug: เปลี่ยนฮาร์ดดิสก์ที่เสียโดยไม่ต้องหยุดการทำงานของระบบ
 >- เลือกใช้ Mirroring หรือ Striping: เพิ่มความปลอดภัยหรือประสิทธิภาพการทำงานของวอลุ่มได้ตามต้องการ
+
+![Image](https://cdn.thefastcode.com/static/article_img/43112.jpg)
+
+รูปจาก: [https://www.thefastcode.com/th-thb/article/what-is-logical-volume-management-and-how-do-you-enable-it-in-ubuntu](https://www.thefastcode.com/th-thb/article/what-is-logical-volume-management-and-how-do-you-enable-it-in-ubuntu)
 
 >[!TIP]
 >โดยสรุปแล้ว LVM เป็นเทคโนโลยีที่ช่วยให้การจัดการพื้นที่เก็บข้อมูลมีความยืดหยุ่น ปลอดภัย และมีประสิทธิภาพมากขึ้น เหมาะสำหรับผู้ใช้งานที่ต้องการความสะดวกในการบริหารจัดการฮาร์ดดิสก์
@@ -78,4 +86,10 @@
 ## Reference
 หนังสือ: UNIX and Linux_System Administration Handbook
 
-ลิ้งค์: [https://medium.com/@nareerat.prr/what-is-lvm-24ae24322eff](https://medium.com/@nareerat.prr/what-is-lvm-24ae24322eff)
+- [https://medium.com/@nareerat.prr/what-is-lvm-24ae24322eff](https://medium.com/@nareerat.prr/what-is-lvm-24ae24322eff)
+- [https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_logical_volumes/assembly_lvm-activation-configuring-and-managing-logical-volumes](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_logical_volumes/assembly_lvm-activation-configuring-and-managing-logical-volumes)
+- `UNIX AND LINUX SYSTEM
+ADMINISTRATION
+HANDBOOK
+FIFTH EDITION BOOK` with James Garnett, Fabrizio Branca, and Adrian Mouat
+- [https://www.thefastcode.com/th-thb/article/what-is-logical-volume-management-and-how-do-you-enable-it-in-ubuntu](https://www.thefastcode.com/th-thb/article/what-is-logical-volume-management-and-how-do-you-enable-it-in-ubuntu)
