@@ -849,6 +849,10 @@ Directory คือ ที่เก็บข้อมูลที่สามา
 # Hard links
 
 
+## Symbolic links
+Symbolic links หรือ "Soft links" ลิ้งค์ไฟล์ด้วยชื่อ เมื่อ kernel พบ Symbolic links ในระหว่างการค้นหา pathname ตัว kernel จะเปลี่ยนเส้นทางความสนใจไปที่
+pathname ที่จัดเก็บเป็นเนื้อหาของลิงก์ ความแตกต่างระหว่าง "Hard links" และ "Symbolic links" ก็คือ Hard links เป็นการอ้างอิงโดยตรง ในขณะที่ Symbolic links
+เป็นการอ้างอิงตามชื่อ.เนื่องจาก "Symbolic links" สามารถมี path ที่กำหนดเองได้ จึงสามารถอ้างถึงไฟล์บนระบบไฟล์อื่นหรือไฟล์ที่ไม่มีอยู่จริงได้ "Symbolic links" ยังสามารถสร้าง loop ได้
 
 ---
  # Reference
