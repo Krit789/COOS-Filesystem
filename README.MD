@@ -7,7 +7,7 @@
 File System คือ วิธีการและโครงสร้างข้อมูลที่ระบบปฏิบัติการใช้ติดตามไฟล์บนดิสก์หรือพาร์ติชัน กล่าวคือ เป็นวิธีการจัดระเบียบไฟล์บนดิสก์ คำนี้ยังใช้เรียกพาร์ติชันหรือดิสก์ที่ใช้จัดเก็บไฟล์ หรือประเภทของไฟล์ระบบอีกด้วย 
 
 # หัวข้อต่าง ๆ
-* [Files and Directories, FHS](/File%20System%20Type/)
+* [Files and Directories, FHS](/Files%20and%20Directories,%20FHS/)
 * [Raw Media Devices](/Raw%20Media%20Devices/)
 * Volume Administration
     * [Physical Volume Administration](/Volume%20Administration/Physical/)
