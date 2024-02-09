@@ -831,7 +831,7 @@ sync
 | Named pipe            |    p   | [`mknod`](#mknod)  | [`rm`](#rm)           |
 | Symbolic link         |    l   | [`ln`](#ln) -s     | [`rm`](#rm)           |
 
-# Regular file
+## Regular file
 
  ไฟล์ทั่วไปประกอบด้วยชุดของไบต์ ซึ่ง filesystem ไม่ได้กำหนดโครงสร้างใดๆ กับเนื้อหาของไฟล์ ตัวอย่างของไฟล์ทั่วไป ได้แก่ ไฟล์ข้อความ, ไฟล์ข้อมูล, โปรแกรมที่เรียกใช้งานได้, และ library ที่ใช้ร่วมกันในเครื่องก็เป็น regular file
 
@@ -839,14 +839,14 @@ sync
 
 ---
 
-# Directories
+## Directories
 
 Directory คือ ที่เก็บข้อมูลที่สามารถเก็บไฟล์อื่นๆไว้ข้างในได้ สามารถสร้าง directory ได้ด้วยคำสั่ง `mkdir` และลบออกได้ด้วยคำสั่ง `rmdir` แต่ต้องเป็น directory ที่ว่างเปล่าเท่านั้นที่สามารถลบได้ หากต้องการลบ directory ที่มีไฟล์อยู่ข้างใน สามารถทำได้โดยใช้คำสั่ง `rm -r`
 
 สัญลักษณ์ "." และ ".." แทนด้วย directory และ parent directory ของมันตามลำดับ สัญลักษณ์เหล่านี้ไม่สามารถถูกลบได้ เนื่องจาก root directory ไม่มี parent directory ดังนั้น path `/..` จึงเทียบเท่ากับ path `/` และก็เทียบเท่ากับ `/`1
 
 ---
-# Hard links
+## Hard links
 
 
 ## Symbolic links
