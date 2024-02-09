@@ -200,13 +200,23 @@ ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
  ```
  * /etc/profile : เป็นไฟล์และคำสั่งที่จะถูก execute ณ ตอน login หรือตอน startup โดย Bourn หรือ C shell ทำให้ admin ของระบบสามารถตั้งค่า default ให้กับทุก user ได้
- * /etc/network/ : ไฟล์การตั้งค่าเกี่ยวกับ network เช่นพวก interface การเชื่อมต่อ หรือ dhcp
+ * /etc/network/ : เป็น subdirector6y ที่เก็บไฟล์การตั้งค่าเกี่ยวกับ network เช่นพวก interface การเชื่อมต่อ หรือ dhcp
  * /etc/networks : แสดงผลรายการของ network ที่เครื่องนี้อยู่ ณ ปัจจุบัน
 ```
 # symbolic names for networks, see networks(5) for more information
 link-local 169.254.0.0
 ```
 ---
+
+# /home
+&nbsp;&nbsp;&nbsp;&nbsp;ด้วยความที่ระบบปฏิบัติการ Linux ในหนึ่งเครื่องอาจมีผู้ใช้ได้หลายคน ซึ่งแต่ละ user ก็จะมี directory ที่เป็นของตนเอง สามารถเขัาถึงได้เฉพาะตัว user ที่เป็นเจ้าของ directory หรือไม่ก็ root user ซึ่งนั้นก็คือ home directory โดยสามารถเข้าถึงโดย path : `/home/{ชื่อ user}`
+
+&nbsp;&nbsp;&nbsp;&nbsp;user จะสามารถทำอะไรก็ได้ใน home directory ของตนไม่ว่าจะเป็นการสร้างไฟล์, ลบไฟล์, ลง program เพิ่มหรืออื่นๆอีกมากมาย
+
+&nbsp;&nbsp;&nbsp;&nbsp;ใน home directory จะเก็บไฟล์ config ของ user นั้นๆไว้ โดยจะถูกเรียกว่าไฟล์ dot (`.`) เนื่องจากชื่อขึ้นต้นด้วย `.` โดยปกติแล้วไฟล์นี้จะซ่อนไว้อยู่ ถ้าอยากจะเห็นไฟล์นี้จำเป็นต้องตั้งค่าใน file manager หรือใช้คำสั่ง `ls -a` ใน terminal ถ้าการตั้งค่าใน file config ใน home directory กับ file config ในระบบมีส่วนที่ขัดแย้งกัน มันจะยึดตามไฟล์ config ใน home
+
+&nbsp;&nbsp;&nbsp;&nbsp;home directory อาจมีขนาดใหญ่ขึ้นเรื่อยๆ จากการจัดเก็บไฟล์ที่ download มา, ไฟล์จากการ compile, การลง program เพิ่ม, ไฟล์จากเมล, รูปภาพ, เพลง และไฟล์อื่นๆอีกมากมายตามที่ user ต้องการ
+
 # /tmp
 
 `/tmp` ประกอบด้วยไฟล์ส่วนใหญ่ที่จำเป็นชั่วคราว หลายโปรแกรมใช้สิ่งนี้เพื่อสร้าง log file
