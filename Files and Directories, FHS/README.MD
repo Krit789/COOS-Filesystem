@@ -217,6 +217,44 @@ link-local 169.254.0.0
 
 &nbsp;&nbsp;&nbsp;&nbsp;home directory อาจมีขนาดใหญ่ขึ้นเรื่อยๆ จากการจัดเก็บไฟล์ที่ download มา, ไฟล์จากการ compile, การลง program เพิ่ม, ไฟล์จากเมล, รูปภาพ, เพลง และไฟล์อื่นๆอีกมากมายตามที่ user ต้องการ
 
+---
+
+# /lib
+
+/lib เก็บ library สำหรับการทำงานของโปรแกรมต่างๆ ประกอบด้วย module ของ kernel และ image library (library ภาษา C) ที่จำเป็นสำหรับการบูตระบบและรันคำสั่งในระบบไฟล์ของรูท เช่น ไฟล์ไบนารีในไดเร็กทอรี /bin และ /sbin 
+
+โดยสามารถระบุ library ได้ง่ายจากนามสกุลไฟล์ .so ซึ่งเทียบเท่ากับไฟล์ DLL (Dynamically Linked Library เป็นชุดของโปรแกรมเล็กๆ ที่โปรแกรมใหญ่สามารถนำไปใช้เมื่อโปรแกรมต้องการทำงานบางอย่างให้สำเร็จ) ในระบบ Windows ซึ่ง library เหล่านี้มีความสำคัญสำหรับการทำงานพื้นฐานของระบบ
+
+module ของ kernel (ไดรเวอร์) จะอยู่ใน subdirectory `/lib/modules/'kernel-version'` ซึ่งเพื่อให้แน่ใจว่าการคอมไพล์ module ทำงานถูกต้อง เราควรตรวจสอบว่า `/lib/modules/'kernel-version'/kernel/build` ชี้ไปที่ `/usr/src/'kernel-version'` หรือไม่
+```
+.                  groff                                 mime                 rsyslog
+..                 grub                                  modprobe.d           sasl2
+apparmor           grub-legacy                           modules              sftp-server
+apt                hdparm                                modules-load.d       snapd
+binfmt.d           init                                  multipath            software-properties
+byobu              initcpio                              nagios               ssl
+cloud-init         initramfs-tools                       needrestart          sysctl.d
+cnf-update-db      kernel                                netplan              systemd
+command-not-found  klibc                                 networkd-dispatcher  sysusers.d
+compat-ld          klibc-K8e6DOmVI9JpyGMLR7qNe5iZeBk.so  nvidia               tc
+console-setup      libdmmp.so                            open-iscsi           terminfo
+crda               libdmmp.so.0.2.0                      openssh              tmpfiles.d
+cryptsetup         libhandle.so.1                        os-prober            ubiquity
+dbus-1.0           libhandle.so.1.0.3                    os-probes            ubuntu-advantage
+dpkg               libmpathcmd.so                        os-release           ubuntu-release-upgrader
+dracut             libmpathcmd.so.0                      pam.d                udev
+environment.d      libmpathpersist.so                    pkgconfig            udisks2
+file               libmpathpersist.so.0                  pm-utils             ufw
+finalrd            libmultipath.so                       policykit-1          update-notifier
+firmware           libmultipath.so.0                     polkit-1             usrmerge
+girepository-1.0   linux                                 python2.7            valgrind
+git-core           linux-boot-probes                     python3              x86_64-linux-gnu
+gnupg              locale                                python3.10           xfsprogs
+gnupg2             lsb                                   python3.11
+gold-ld            man-db                                recovery-mode
+```
+
+---
 # /tmp
 
 `/tmp` ประกอบด้วยไฟล์ส่วนใหญ่ที่จำเป็นชั่วคราว หลายโปรแกรมใช้สิ่งนี้เพื่อสร้าง log file
