@@ -784,6 +784,23 @@ sync $HOME/.bashrc $HOME/my/important/file
 ทั้งหมด
 sync
 ```
+
+---
+# File Types
+มีประเภทพื้นฐานทั้งหมด 7 แบบ ถึงแม้จะมีประเภทใหม่โผล่มาแต่ก็จะยังอิง ประเภทเหล่านี้ในการสร้าง
+
+|       File type       | Symbol |     Created by     |  Removed by  |
+|:---------------------:|:------:|:------------------:|:------------:|
+| Regular file          |    -   | editors, cp, etc.  | rm           |
+| Directory             |    d   | mkdir              | rmdir, rm -r |
+| Character device file |    c   | mknod              | rm           |
+| Block device file     |    b   | mknod              | rm           |
+| Local domain socket   |    s   | socket system call | rm           |
+| Named pipe            |    p   | mknod              | rm           |
+| Symbolic link         |    l   | ln -s              | rm           |
+
+
+
 ---
  # Reference
  * https://access.redhat.com/documentation/th-th/red_hat_enterprise_linux/5/html/installation_guide/s1-grub-whatis
