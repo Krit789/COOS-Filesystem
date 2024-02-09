@@ -281,6 +281,53 @@ directory หรือ symbolic link ที่จะต้องมีใน `/m
 
 บนระบบที่มีหลายอุปกรณ์สามารถเชื่อมต่อได้ directory ที่ถูก mount สามารถสร้างได้ โดยการเพิ่มตัวเลขต่อท้ายชื่อที่แสดงอยู่ด้านบน โดย directory โดยตัวเลขนั้นเริ่มต้นด้วย '0' แต่ชื่อที่ไม่ได้ระบุด้านบนก็ยังต้องมีตัวเลขอยู่ อย่างเช่น ชื่อที่ถูกต้องตามมาตรฐานกับไดรฟ์ซีดีรอมสองไดรฟ์ อาจจะมี `/media/cdrom0` และ `/media/cdrom1`
 
+---
+# /usr
+`/usr` เป็นส่วนที่สำคัญเพราะในส่วนนี้ประกอบไปด้วย  user binaries, their documentation, libraries, header files และอื่นๆ supporting libraries ก็อยู่ที่นี่ user program เช่น telnet, ftp ฯลฯ... ก็อยู่ที่นี่เช่นกัน ส่วนของ home directory ของแต่ละ user ก็อยู่ที่นี่ถ้าเป็น ปฏิบัติการ UNIX (/home/username) ดังนั้นจึงทำให้ผู้คนเรียกส่วนนี้ว่า user resource แทนที่จะเรียกว่า user ธรรมดา
+
+* /usr/X11R6 <br> ประกอบด้วย libraries, executables, docs, fonts ฯลฯ
+* /usr/X11R6/bin <br> XFree86 system binaries. ส่วนที่จำเป็นในการเริ่มต้นระบบ กำหนดค่า และ running X windowing system. X, xf86config, xauth, xmodmap และ xpenguin ก็อยู่ที่นี่.
+*  /usr/X11R6/include <br> ไฟล์ส่วนหัวของระบบ XFree86 จำเป็นสำหรับการ compile แอพพลิเคชั่นบางตัวที่ใช้ X toolkit.
+*  /usr/X11R6/lib <br> เก็บ libraries ของระบบ XFree86
+* /usr/X11R6/lib/modules <br> XFree86 system modules. โหลดเมื่อเริ่มต้น video4linux, DRI and GLX extensions and drivers หากไม่มีโมดูลพวกนี้ input บางตัวไม่ทำงาน
+*  /usr/X11R6/lib/X11/fonts <br> XFree86 system fonts. แบบอักษรที่ใช้โดย 'xfs' (X Font Server) และโปรแกรมประเภทนั้น.
+* /usr/bin <br> มี binary ส่วนใหญ่ในระบบ การดำเนินการใน directory แตกต่างกันอย่างมาก ตัวอย่างเช่น vi, gcc, gnome−session และ mozilla ทั้งหมดอยู่ที่นี่
+* /usr/doc <br> เก็บเอกสารไว้รวมกันที่นี่ เอกสารจริงอยู่ใน /usr/share/doc และมีการเชื่อมโยงจากที่นี่
+* /usr/etc <br> ตามทฤษฎีแล้วเป็นอีก directory สำหรับไฟล์ configuration แทบไม่ได้ใช้งานเลยตอนนี้
+* /usr/games <br> กาลครั้งหนึ่ง directory นี้มีไฟล์เกมบนเครือข่าย ตอนนี้ไม่ค่อยได้ใช้
+* /usr/include <br> directory สำหรับ header file ซึ่งจำเป็นสำหรับการ compile source code พื้นที่ของ user
+* /usr/include/'package−name' <br> สำหรับ application ที่มี header file เฉพาะ
+* /usr/info <br> ใช้เพื่อเก็บไฟล์ สำหรับระบบ document info อยู่ใน '/usr/share/info'
+* /usr/lib <br> เก็บ libraries ของโปรแกรมที่ใช้บ่อย
+* /usr/local <br> เป็นตำแหน่งที่ดีในการเก็บโปรแกรมที่ compile เองหรือจากบุคคลที่สาม. /usr/local มีไว้สำหรับใช้โดยผู้ดูแลระบบเมื่อทำการติดตั้งซอฟต์แวร์ภายในเครื่อง จะต้องไม่ถูกเขียนทับเมื่อมีการอัพเดตซอฟต์แวร์ <br> บางครั้ง ระบบอาจใช้สำหรับโปรแกรมและ ข้อมูล ร่วมกันระหว่างกลุ่มโฮสต์ แต่ไม่พบใน /usr
+. ซอฟต์แวร์ที่ติดตั้งในเครื่องจะต้องอยู่ภายใน /usr/local แทนที่จะเป็น /usr ( เว้นแต่จะถูกติดตั้งเพื่อแทนที่หรืออัพเกรดซอฟต์แวร์ใน /usr )
+* /usr/man <br> มันถูกย้ายไปที่ /usr/share/man
+* /usr/sbin <br> มีโปรแกรมสำหรับการรันโดย 'root' เช่น '/sbin' ก็คือ
+  ไม่ใช่ส่วนหนึ่งของ $PATH ของผู้ใช้ ตัวอย่างของไบนารีที่รวมอยู่ที่นี่ ได้แก่ chroot, useradd, in.tftpd และ
+  pppconfig.php
+* /usr/share <br> directory นี้มีไฟล์ 'ที่สามารถแชร์ได้' ข้อมูลที่ไม่จำเป็นต้องแก้ไขควรเก็บข้อมูลนั้นไว้ใน '/usr/share' (หรือ '/usr/local/share' หากติดตั้งในเครื่อง) แต่แนะนำให้สร้าง directory ย่อย ใน /usr/share เพื่อใช้เก็บไฟล์ที่ต้องการแชร์
+* /usr/share/doc <br> ตำแหน่งของ document file เฉพาะแพ็คเกจ directory นี้จะมีข้อมูลที่เป็นประโยชน์ซึ่งอาจไม่มีอยู่ใน man page นอกจากนี้ยังอาจมี templates และ configuration files สำหรับบางอย่างที่ทำให้การกำหนดค่าง่ายขึ้นมาก
+* /usr/share/info <br> ตำแหน่งของข้อมูล แต่คนนิยมอ่าน manpage มากกว่า
+* /usr/share/man <br> Manual pages. ซึ่งแบ่งออกเป็น 8 ส่วน ประกอบด้วย user programs, system calls, library functions and subroutines, special files, file format, games, miscellaneous, system administration
+* /usr/src <br> เก็บ kernel sources, header files และ documentation
+* /usr/tmp <br> เก็บไฟล์ชั่วคราวของ user แต่ในรุ่นใหม่ๆ ไม่พบการใช้งานเลย ซึ่งตัวอี้อาจจะได้รับผลมาจาก UNIX
+
+---
+# /var
+`/var` 
+
+
+---
+# /srv
+
+`/srv`
+
+เอาไว้เก็บพวกไฟล์ข้อมูลของเครื่องเซิร์ฟเวอร์และที่ administrator ไว้ดังนั้นคนที่สามารถเข้าไปได้ต้องมีสิทธิ์ administrator และไว้เก็บไฟล์เพื่อให้เข้ามาใช้บริการต่างๆที่ระบบได้ติดตั้งไว้
+
+โครงสร้างข้อมูลข้างในของ /srv เป็นไปตามโปรโตคอล เช่น FTP, rsync, WWW, CVS
+
+---
+
 # /tmp
 
 `/tmp` ประกอบด้วยไฟล์ส่วนใหญ่ที่จำเป็นชั่วคราว หลายโปรแกรมใช้สิ่งนี้เพื่อสร้าง log file
