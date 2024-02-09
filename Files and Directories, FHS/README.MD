@@ -839,6 +839,13 @@ sync
  สามารถเข้าถึงได้ตามลำดับ (sequential access) และเข้าถึงได้แบบสุ่ม (random access)
 
 ---
+
+## Symbolic links
+Symbolic links หรือ "Soft links" ลิ้งค์ไฟล์ด้วยชื่อ เมื่อ kernel พบ Symbolic links ในระหว่างการค้นหา pathname ตัว kernel จะเปลี่ยนเส้นทางความสนใจไปที่
+pathname ที่จัดเก็บเป็นเนื้อหาของลิงก์ ความแตกต่างระหว่าง "Hard links" และ "Symbolic links" ก็คือ Hard links เป็นการอ้างอิงโดยตรง ในขณะที่ Symbolic links
+เป็นการอ้างอิงตามชื่อ.เนื่องจาก "Symbolic links" สามารถมี path ที่กำหนดเองได้ จึงสามารถอ้างถึงไฟล์บนระบบไฟล์อื่นหรือไฟล์ที่ไม่มีอยู่จริงได้ "Symbolic links" ยังสามารถสร้าง loop ได้
+
+---
  # Reference
  * https://access.redhat.com/documentation/th-th/red_hat_enterprise_linux/5/html/installation_guide/s1-grub-whatis
  * https://docs.oracle.com/en/operating-systems/oracle-linux/6/admin/ol_about_devices.html
