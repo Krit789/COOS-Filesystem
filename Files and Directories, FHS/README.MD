@@ -848,6 +848,13 @@ Directory คือ ที่เก็บข้อมูลที่สามา
 ---
 ## Hard links
 
+---
+
+## Named pipes
+
+เช่นเดียวกับ[`Local domain sockets`](#Local_domain_sockets) pipe ที่มีชื่อ มีการสื่อสารระหว่างสองกระบวนการที่ทำงานบนโฮสต์เดียวกัน มีชื่อเรียกอีกอย่างว่า “file FIFO” (เช่นเดียวกับ financial accounting, FIFO ย่อมาจากวลี “เข้าก่อน ออกก่อน”) คุณสามารถสร้าง pipe name ด้วย mknod และลบออกด้วย rm pipe ที่มีชื่อและ Local domain sockets มีจุดประสงค์ที่คล้ายกันS
+
+---
 
 ## Symbolic links
 Symbolic links หรือ "Soft links" ลิ้งค์ไฟล์ด้วยชื่อ เมื่อ kernel พบ Symbolic links ในระหว่างการค้นหา pathname ตัว kernel จะเปลี่ยนเส้นทางความสนใจไปที่
