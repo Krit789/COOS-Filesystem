@@ -1,4 +1,40 @@
 ![Cabinet](/Assets/Files%20and%20Directories,%20FHS.jpg)
+
+## เนื้อหาในหัวข้อนี้
+* [Filesystem](#filesystem)
+* [Root Directory](#root-directory)
+  * [/bin](#bin)
+  * [/boot](#boot)
+  * [/dev](#dev)
+  * [/etc](#etc)
+  * [/home](#home)
+  * [/lib](#lib)
+  * [/lost+found](#lostfound)
+  * [/media](#media)
+  * [/mnt](#mnt)
+  * [/opt](#opt)
+  * [/proc](#proc)
+  * [/root](#root)
+  * [/sbin](#sbin)
+  * [/usr](#usr)
+  * [/var](#var)
+  * [/srv](#srv)
+  * [/tmp](#tmp)
+
+* [File types](#file-types)
+  * [Regular file](#regular-file)
+  * [Directories](#directories)
+  * [Hard links](#hard-links)
+  * [Character and block device files](#character-and-block-device-files)
+  * [Local Domain Sockets](#local-domain-sockets)
+  * [Named pipes](#named-pipes)
+  * [Symbolic links](#symbolic-links)
+* [อ้างอิง](#references)
+
+# Filesystem
+
+filesystem หมายถึง วิธีการจัดการและโครงสร้างข้อมูลที่ระบบปฏิบัติการใช้ในการติดตามไฟล์ดูบนดิสก์หรือพาร์ติชัน หรือก็คือเป็นวิธีการจัดระเบียบไฟล์บนดิสก์ คำนี้ยังใช้กับพาร์ติชันหรือดิสก์ที่ใช้เก็บไฟล์ หรือประเภทของระบบไฟล์อีกด้วย
+
 # Root Directory
 * Linux มีโครงสร้าง directory เป็นแบบลำดับชั้นเดียว (Single hierarchical directory) นั้นก็คือทุกอย่างเริ่มต้นจาก root directory หรือก็คือเครื่องหมาย `/` จากนั้นขยายไปเป็น directory รองต่างๆ ซึ่งจะ ต่างจากระบบปฏิบัติการ Window ที่จะมี "ไดรฟ์" ต่างๆ เช่น A, B, C, D, E เป็นต้น โดย Linux จัดเรียง directory ที่ถัดจาก root directory ตามลำดับความสำคัญในกระบวนการบูธจากมากไปน้อย
 
