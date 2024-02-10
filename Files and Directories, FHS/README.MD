@@ -1,31 +1,32 @@
 ![Cabinet](/Assets/Files%20and%20Directories,%20FHS.jpg)
 # Root Directory
-* Linux มีโครงสร้าง directory เป็นแบบลำดับชั้นเดียว (Single hierarchical directory) นั้นก็คือทุกอย่างเริ่มต้นจาก root directory หรือก็คือเครื่องหมาย `/` จากนั้นขยายไปเป็น directory รองต่างๆ ซึ่งจะ ต่างจากระบบปฏิบัติการ Window ที่จะมี "ไดรฟ์" ต่างๆ เช่น C, D, E เป็นต้น และ Linux จัดเรียง directory ที่ถัดจาก root directory ตามลำดับความสำคัญในกระบวนการบูธจากมากไปน้อย
+* Linux มีโครงสร้าง directory เป็นแบบลำดับชั้นเดียว (Single hierarchical directory) นั้นก็คือทุกอย่างเริ่มต้นจาก root directory หรือก็คือเครื่องหมาย `/` จากนั้นขยายไปเป็น directory รองต่างๆ ซึ่งจะ ต่างจากระบบปฏิบัติการ Window ที่จะมี "ไดรฟ์" ต่างๆ เช่น A, B, C, D, E เป็นต้น โดย Linux จัดเรียง directory ที่ถัดจาก root directory ตามลำดับความสำคัญในกระบวนการบูธจากมากไปน้อย
 
-โครงสร้างมาตรฐานของ root directory (`/`) ที่กำหนดโดยมาตรฐาน Filesystem Standard (FSSTND) จะมี directory ที่จำเป็นดังต่อไปนี้ :
+โครงสร้างมาตรฐานของ root directory (`/`) ที่กำหนดโดยมาตรฐาน Filesystem Standard (FSSTND) จะมี
+### Directory ที่จำเป็นดังต่อไปนี้
 
 | Directory  | คำอธิบาย                            |
 |-------|---------------------------------------|
-| `/bin`   | เก็บ library คำสั่งพื้นฐานที่จำเป็นสำหรับการทำงานของระบบเบื้องต้น |
-| `/boot`  | เก็บไฟล์ที่เกี่ยวข้องกับการบูธเครื่อง                     |
-| `/dev`   | เก็บไฟล์พิเศษที่มีความเกี่ยวข้องกับ device ที่เชื่อมต่อกับระบบ                 |
-| `/etc`   | เก็บไฟล์ system config ของ host                  |
-| `/lib`   | รวม library ที่ใช้ร่วมกันที่จำเป็นและโมดูลเคอร์เนล              |
-| `/media` | ไลบรารีสำหรับสื่อแบบถอดได้ เช่น ไดรฟ์ USB               |
-| `/mnt`   | เป็น directory สำหรับเชื่อมต่ออุปกรณ์เก็บข้อมูลแบบชั่วคราวหรือแบบ removable เช่น USB เป็นต้น                   |
-| `/opt`   | ใช้เก็บโปรแกรมส่วนขยายอื่นๆ หรือโปรแกรมประเภท third party software ที่ไม่ได้ถูกติดตั้งมาตั้งแต่แรกกับระบบ                           |
-| `/sbin`  | สำหรับเก็บ library หรือ command line tool ที่ใช้ได้เฉพาะ root user                        |
-| `/srv`   | เก็บข้อมูลสำหรับ service ที่ให้บริการโดยระบบ                        |
-| `/tmp`   | เก็บไฟล์ชั่วคราว                                       |
-| `/usr`   |ลำดับชั้นรอง  (Secondary hierarchy) สำหรับไฟล์และโปรแกรมที่เกี่ยวข้องกับผู้ใช้ส่วนใหญ่     |
-| `/var`   | เก็บไฟล์ที่มีการเปลี่ยนแปลงไฟล์ชั่วคราวที่สร้างโดยโปรแกรมหรือผู้ใช้ เช่น log หรือ spool files                       |
+| [`/bin`](#bin)   | เก็บ library คำสั่งพื้นฐานที่จำเป็นสำหรับการทำงานของระบบเบื้องต้น |
+| [`/boot`](#boot)  | เก็บไฟล์ที่เกี่ยวข้องกับการบูธเครื่อง                     |
+| [`/dev`](#dev)   | เก็บไฟล์พิเศษที่มีความเกี่ยวข้องกับ device ที่เชื่อมต่อกับระบบ                 |
+| [`/etc`](#etc)   | เก็บไฟล์ system config ของ host                  |
+| [`/lib`](#lib)   | รวม library ที่ใช้ร่วมกันที่จำเป็นและโมดูลเคอร์เนล              |
+| [`/media`](#media) | ไลบรารีสำหรับสื่อแบบถอดได้ เช่น ไดรฟ์ USB               |
+| [`/mnt`](#mnt)   | เป็น directory สำหรับเชื่อมต่ออุปกรณ์เก็บข้อมูลแบบชั่วคราวหรือแบบ removable เช่น USB เป็นต้น                   |
+| [`/opt`](#mnt)   | ใช้เก็บโปรแกรมส่วนขยายอื่นๆ หรือโปรแกรมประเภท third party software ที่ไม่ได้ถูกติดตั้งมาตั้งแต่แรกกับระบบ                           |
+| [`/sbin`](#sbin)  | สำหรับเก็บ library หรือ command line tool ที่ใช้ได้เฉพาะ root user                        |
+| [`/srv`](#srv)   | เก็บข้อมูลสำหรับ service ที่ให้บริการโดยระบบ                        |
+| [`/tmp`](#tmp)   | เก็บไฟล์ชั่วคราว                                       |
+| [`/usr`](#usr)   |ลำดับชั้นรอง  (Secondary hierarchy) สำหรับไฟล์และโปรแกรมที่เกี่ยวข้องกับผู้ใช้ส่วนใหญ่     |
+| [`/var`](#var)   | เก็บไฟล์ที่มีการเปลี่ยนแปลงไฟล์ชั่วคราวที่สร้างโดยโปรแกรมหรือผู้ใช้ เช่น log หรือ spool files                       |
 
-ไดเร็กทอรีเพิ่มเติม :
+### Directory เพิ่มเติมดังต่อไปนี้
 | Directory  | คำอธิบาย                             |
 |-------|---------------------------------------|
-| `/home` | Home directory ของผู้ใช้                     |
-| `/lib`  | เก็บ library สำหรับการทำงานของโปรแกรม |
-| `/root` | Home directory สำหรับ root user              |
+| [`/home`](#home) | Home directory ของผู้ใช้                     |
+| [`/lib`](#lib)  | เก็บ library สำหรับการทำงานของโปรแกรม |
+| [`/root`](#root) | Home directory สำหรับ root user              |
 
 
 * โดยไดเร็กทอรีอื่นๆใน root directory ทั้งหมดถือว่าเป็น "children" ของ root directory (`/`) ซึ่งพาร์ติชันที่มีร root file system จะถูกโหลดเป็นอันดับแรกในตอนบูตระบบ และระบบจะไม่สามารถบูตได้หากไม่พบพาร์ติชันนี้
@@ -442,7 +443,6 @@ chmod 777 SHE
 หรือ
 chmod ugo=rwx SHE
 ```
----
 ## `chown`
 ```
 chown [option] [userowner] [:groupowner]  file/directory
@@ -459,7 +459,6 @@ chown :lazyboy SHE
 chown User02 :lazyboy SHE
 
 ```
----
 ## `cp`
 ```
 cp [option] [path/filename] [path/destination] 
@@ -471,7 +470,6 @@ cp [option] [path/filename] [path/destination]
 ```
 cp /path/filetarget.txt /despath
 ```
----
 ## `date`
 ```
  date [option] [+FORMAT]
@@ -488,7 +486,6 @@ date +'%Y/%m/%d %H:%M:%S'
 date
 ผลลัพธ์ -> Thu Feb 8 11:26:38 AM UTC 2024
 ```
----
 ## `dd`
 ```
  dd if=<ตำแหน่ง directory/file ที่ต้องการ> of=<ตำแหน่งที่จะเอาไฟล์ ไปไว้> [Options]
@@ -505,7 +502,6 @@ dd if =/dev/sda2 of=~/hdadisk.img
 restore จาก backup image
 dd if=hdadisk.img of=/dev/sdb3
 ```
----
 ## `df`
 ```
  df [option] [file]
@@ -521,7 +517,6 @@ df
 หน่วย mb/gb
 df -h
 ```
----
 ## `dmesg`
 ```
 dmesg [option] [file]
@@ -536,7 +531,6 @@ dmesg > boot.messages
 ```
 ว้าว ทีนี้ผมก็สามารถเอาไฟล์ boot.messages ไปส่งได้เลยโดยไม่ต้องมานั่งพิมพ์เอง
 
----
 ## `echo`
 ```
 echo [option] [string]
@@ -548,7 +542,6 @@ echo [option] [string]
 ```
 echo "Love You"
 ```
----
 ## `false`
 ```
 false
@@ -560,7 +553,6 @@ false
 ```
 if false; then echo "What"; else echo "No"; fi
 ```
----
 ## `hostname`
 ```
 hostname [option]
@@ -576,7 +568,6 @@ hostname
 ต้องการทราบ ip address
 hostname -i
 ```
----
 ## `kill`
 ```
 kill [option] <process ID>
@@ -591,7 +582,6 @@ kill 0
 ต้องการยกเลิกทันที
 kill -9 0
 ```
----
 ## `ln`
 ```
 ln <file ต้นทาง> <file ที่ลิ้งค์ไปต้นทาง>
@@ -605,7 +595,6 @@ ln MAX mx
 cat mx
 ผลลัพธ์ -> ข้างใน MAX
 ```
----
 ## `login`
 ```
 login <username>
@@ -617,7 +606,6 @@ login <username>
 ```
 login GAME
 ```
----
 ## `ls`
 ```
 ls [option] [file]
@@ -631,7 +619,6 @@ ls
 
 ls /user/passwd
 ```
----
 ## `mkdir`
 ```
 mkdir [option] <directory>
@@ -643,7 +630,6 @@ mkdir [option] <directory>
 ```
 mkdir Book
 ```
----
 ## `mknod`
 ```
 mknod [option] <name> <type> [major minor]
@@ -660,7 +646,6 @@ mknod /dev/characterfile  c 1 2
 
 mknod pipelink1 p
 ```
----
 ## `more`
 ```
 more [option] <file>
@@ -675,7 +660,6 @@ more file1
 แสดงตั้งแต่บรรทัดที่3
 more +3 file1
 ```
----
 ## `mount`
 ```
 mount อุปกรณ์
@@ -837,7 +821,6 @@ sync
 
  สามารถเข้าถึงได้ตามลำดับ (sequential access) และเข้าถึงได้แบบสุ่ม (random access)
 
----
 
 ## Directories
 
@@ -845,42 +828,43 @@ Directory คือ ที่เก็บข้อมูลที่สามา
 
 สัญลักษณ์ "." และ ".." แทนด้วย directory และ parent directory ของมันตามลำดับ สัญลักษณ์เหล่านี้ไม่สามารถถูกลบได้ เนื่องจาก root directory ไม่มี parent directory ดังนั้น path `/..` จึงเทียบเท่ากับ path `/` และก็เทียบเท่ากับ `/`1
 
----
+
 ## Hard links
 
 เป็นการสร้างช่องทางให้เข้าถึงไฟล์ได้อีกทาง เป็นการทำสำเนามาจาก Inode ใน harddisk โดยทั้งตัวที่สร้างใหม่ กับตัวไฟล์เดิมจะถือเป็นไฟล์เดียวกัน โดยระหว่างที่ regular file นั้นมีแค่ชื่อเดียว แต่ hard link ทำให้เราสามารถสร้างชื่อที่ชื้ไปยังข้อมูลตัวเดียวกันได้ใน disk เหมือนกับการสร้าง shortcut ไปยังไฟล์เดียวกันโดยไม่ได้คัดลอกเนื้อหาไฟล์ 
 
 คุณสามารถสร้างฮาร์ดลิงก์ได้ด้วยคำสั่ง `ln` และลบออกได้ด้วยคำสั่ง `rm` การจำคำสั่ง `ln` ซึ่งคลายกับคำสั่ง `cp` โดยคำสั่ง `cp oldfile newfile` สร้างสำเนาของไฟล์ oldfile ชื่อ newfile แต่คำสั่ง `ln oldfile newfile` ทำให้ชื่อ newfile เป็นการอ้างอิงเพิ่มเติมไปยัง oldfile
 
----
+
 
 ## Character and block device files
 ไฟล์อุปกรณ์ช่วยให้โปรแกรมสื่อสารกับ hardware และ อุปกรณ์ต่อพ่วงของระบบ kernel ประกอบด้วย (หรือโหลด) ซอฟต์แวร์ไดรเวอร์สำหรับอุปกรณ์แต่ละเครื่องของระบบ ซอฟต์แวร์นี้จะดูแลรายละเอียดที่ยุ่งวุ่นวายในการจัดการแต่ละอุปกรณ์ เพื่อให้ kernel สามารถยังคงเป็นนามธรรมและไม่ขึ้นอยู่กับ hardware ไดรเวอร์อุปกรณ์นำเสนออินเทอร์เฟซการสื่อสารมาตรฐานที่ดูเหมือนไฟล์ปกติ เมื่อระบบไฟล์ได้รับการร้องขอที่อ้างถึงตัวละครหรืออุปกรณ์ block files ก็จะส่งคำขอไปยังไดรเวอร์อุปกรณ์ที่เหมาะสม อย่างไรก็ตาม สิ่งสำคัญคือต้องแยกไฟล์อุปกรณ์ออกจากไดรเวอร์อุปกรณ์ ไฟล์เป็นเพียงจุดนัดพบที่สื่อสารกับไดรเวอร์ <br> ความแตกต่างระหว่าง character device และ block device นั้นละเอียดอ่อนและไม่คุ้มที่จะตรวจสอบในรายละเอียด ในอดีต hardware ทั้งสองประเภทเป็นตัวแทน block และ character device แต่การกำหนดค่านั้นหาได้ยากในปัจจุบัน ตามหลักปฏิบัติแล้ว FreeBSD ได้กำจัด block device ไปโดยสิ้นเชิง แม้ว่าการมีอยู่ของสเปกตรัมจะยังคงเห็นได้ใน man page และไฟล์ส่วนหัวก็ตาม ไฟล์อุปกรณ์มีลักษณะเป็นตัวเลขสองตัว เรียกว่าหมายเลขอุปกรณ์หลักและหมายเลขรอง หมายเลขอุปกรณ์หลักจะบอก kernel ว่าไฟล์อ้างถึง driver ใด และหมายเลขอุปกรณ์รองมักจะบอกไดรเวอร์ว่าต้องระบุที่อยู่หน่วยกายภาพ ตัวอย่างเช่น อุปกรณ์หลักหมายเลข 4 บนระบบ Linux หมายถึงไดรเวอร์แบบอนุกรม serial port (/dev/tty0) จะมีหมายเลขอุปกรณ์หลัก 4 และอุปกรณ์รองหมายเลข 0 ไดรเวอร์สามารถตีความหมายเลขอุปกรณ์รองที่ถูกส่งไปให้พวกเขาด้วยวิธีใดก็ได้ที่ต้องการ ตัวอย่างเช่น ไดรเวอร์เทปใช้หมายเลขอุปกรณ์รองเพื่อขัดขวาง <br> ตรวจสอบดูว่าเทปควรจะกรอกลับเมื่อปิดไฟล์อุปกรณ์หรือไม่ ในอดีตอันไกลโพ้น /dev เคยเป็นไดเร็กทอรีทั่วไปและไฟล์อุปกรณ์ที่อยู่ภายในนั้น สร้างด้วย mknod และลบออกด้วย rm น่าเสียดายที่ระบบดิบนี้ไม่พร้อมรับมือกับไดรเวอร์และอุปกรณ์ประเภทต่างๆ มากมายที่ปรากฏขึ้นในช่วงสองสามทศวรรษที่ผ่านมา นอกจากนี้ยังอำนวยความสะดวกในการกำหนดค่าที่ไม่ตรงกันที่อาจเกิดขึ้นทุกประเภท เช่น ไฟล์อุปกรณ์ที่อ้างถึงอุปกรณ์ที่ไม่มีจริง อุปกรณ์ที่ไม่สามารถเข้าถึงได้เนื่องจากไม่มีไฟล์อุปกรณ์ และอื่นๆ ทุกวันนี้ ไดเร็กทอรี /dev จะถูก mount เป็นระบบไฟล์พิเศษ และ เนื้อหาจะได้รับการดูแลโดยอัตโนมัติโดยเคอร์เนลร่วมกับดีมอนระดับผู้ใช้ มีระบบพื้นฐานเดียวกันนี้มีสองเวอร์ชันที่แตกต่างกัน
 
----
+
 ## Local domain sockets
 
 Socket คือ การเชื่อมต่อระหว่างกระบวนการที่ช่วยให้สามารถ สื่อสารได้อย่างถูกต้อง UNIX กำหนด Socket หลายประเภท ซึ่งส่วนใหญ่เกี่ยวข้องกับเครือข่าย Local domain sockets สามารถเข้าถึงได้จากโฮสต์ในเครื่องเท่านั้น และถูกอ้างอิงผ่าน object file system แทนที่จะเป็น พอร์ตเครือข่าย บางครั้ง ทั้งสองก็รู้จักกัน เป็น “UNIX domain sockets” Syslog และ X Window System เป็นตัวอย่างของสิ่งอำนวยความสะดวกมาตรฐานที่ใช้ Local domain sockets แต่ยังมีอีกมากมาย รวมถึง database และ app server.<br> Local domain sockets ถูกสร้างขึ้นด้วยการเรียกระบบ Socket และลบออกด้วยคำสั่ง rm หรือ การเรียกระบบยกเลิกการเชื่อมโยง เมื่อไม่มีผู้ใช้อีกต่อไป
 
----
 
 ## Named pipes
 
 เช่นเดียวกับ Local domain sockets, pipe ที่มีชื่อ มีการสื่อสารระหว่างสองกระบวนการที่ทำงานบนโฮสต์เดียวกัน มีชื่อเรียกอีกอย่างว่า “file FIFO” (เช่นเดียวกับ financial accounting, FIFO ย่อมาจากวลี “เข้าก่อน ออกก่อน”) คุณสามารถสร้าง pipe name ด้วย mknod และลบออกด้วย rm pipe ที่มีชื่อและ Local domain sockets มีจุดประสงค์ที่คล้ายกันS
 
----
+
 
 ## Symbolic links
 Symbolic links หรือ "Soft links" ลิ้งค์ไฟล์ด้วยชื่อ เมื่อ kernel พบ Symbolic links ในระหว่างการค้นหา pathname ตัว kernel จะเปลี่ยนเส้นทางความสนใจไปที่
 pathname ที่จัดเก็บเป็นเนื้อหาของลิงก์ ความแตกต่างระหว่าง "Hard links" และ "Symbolic links" ก็คือ Hard links เป็นการอ้างอิงโดยตรง ในขณะที่ Symbolic links
 เป็นการอ้างอิงตามชื่อ.เนื่องจาก "Symbolic links" สามารถมี path ที่กำหนดเองได้ จึงสามารถอ้างถึงไฟล์บนระบบไฟล์อื่นหรือไฟล์ที่ไม่มีอยู่จริงได้ "Symbolic links" ยังสามารถสร้าง loop ได้
 
----
- # Reference
- * https://access.redhat.com/documentation/th-th/red_hat_enterprise_linux/5/html/installation_guide/s1-grub-whatis
- * https://docs.oracle.com/en/operating-systems/oracle-linux/6/admin/ol_about_devices.html
- * https://saixiii.com
- * https://poundxi.com
- * https://www.ibm.com
- * https://tldp.org/LDP/Linux-Filesystem-Hierarchy/Linux-Filesystem-Hierarchy.pdf
- * https://www.redhat.com/sysadmin/linking-linux-explained
+
+ # References
+* Red Hat, Inc. (n.d.). GRUB (Grand Unified Bootloader) [Thai]. Retrieved from https://access.redhat.com/documentation/th-th/red_hat_enterprise_linux/5/html/installation_guide/s1-grub-whatis
+* Oracle. (n.d.). About Devices - Oracle Linux Documentation - 6.5. Retrieved from https://docs.oracle.com/en/operating-systems/oracle-linux/6/admin/ol_about_devices.html
+* Saixiii. (n.d.). Saixiii. Retrieved from https://saixiii.com
+* Poundxi. (n.d.). Poundxi. Retrieved from https://poundxi.com
+* IBM. (n.d.). ibm.com. Retrieved from https://www.ibm.com
+* The Linux Documentation Project. (n.d.). The Linux File-System Hierarchy. Retrieved from https://tldp.org/LDP/Linux-Filesystem-Hierarchy/Linux-Filesystem-Hierarchy.pdf
+* Red Hat, Inc. (n.d.). Linking to Linux Explained. Retrieved from https://www.redhat.com/sysadmin/linking-linux-explained
+* Siever, E., Figgins, S., Love, R., & Robbins, A. (2009). Linux in a nutshell (6th ed.). O'Reilly Media, Inc.
+* Nemeth, E., Snyder, G., Hein, T., & Seebass, S. (2017). UNIX and Linux system administration handbook (5th ed.). Addison-Wesley.red_hat_enterprise_linux/5/html/installation_guide/s1-grub-whatis
