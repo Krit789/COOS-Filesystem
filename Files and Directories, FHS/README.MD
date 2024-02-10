@@ -885,8 +885,86 @@ pathname ที่จัดเก็บเป็นเนื้อหาขอ�
 * Nemeth, E., Snyder, G., Hein, T., & Seebass, S. (2017). UNIX and Linux system administration handbook (5th ed.). Addison-Wesley
 * Red Hat, Inc. (n.d.). GRUB (Grand Unified Bootloader) [Thai]. Retrieved from https://access.redhat.com/documentation/th-th/red_hat_enterprise_linux/5/html/installation_guide/s1-grub-whatis
 * Oracle. (n.d.). About Devices - Oracle Linux Documentation - 6.5. Retrieved from https://docs.oracle.com/en/operating-systems/oracle-linux/6/admin/ol_about_devices.html
-* Saixiii. (n.d.). Saixiii. Retrieved from https://saixiii.com
-* Poundxi. (n.d.). Poundxi. Retrieved from https://poundxi.com
-* IBM. (n.d.). ibm.com. Retrieved from https://www.ibm.com
 * The Linux Documentation Project. (n.d.). The Linux File-System Hierarchy. Retrieved from https://tldp.org/LDP/Linux-Filesystem-Hierarchy/Linux-Filesystem-Hierarchy.pdf
 * Red Hat, Inc. (n.d.). Linking to Linux Explained. Retrieved from https://www.redhat.com/sysadmin/linking-linux-explained
+* `chmod`
+  * Saixiii. (2017, May 9). chmod - คำสั่งเปลี่ยนสิทธิ์ในการเข้าถึง File. https://www.oreilly.com/library/view/hp-ux-11i-system/0131018833/0131018833_ch21lev1sec6.html
+  * The Linux Documentation Project. (n.d.). chmod(1). https://www.redhat.com/sysadmin/linux-file-permissions-explained
+* `chown`
+  * Saixiii. (2017, May 9). chown - คำสั่งเปลี่ยนเจ้าของ file หรือ directory. https://man7.org/linux/man-pages/man2/chown.2.html
+  * The Linux Documentation Project. (n.d.). chown(1). https://man7.org/linux/man-pages/man1/chown.1p.html
+* `cp`
+  * Saixiii. (2017, May 9). cp - คำสั่งทำสำเนาหรือ copy ข้อมูล. https://www.geeksforgeeks.org/cp-command-linux-examples/
+  * The Linux Documentation Project. (n.d.). cp(1). https://man7.org/linux/man-pages/man1/cp.1.html
+* `date`
+  * Saixiii. (2017, May 9). date - คำสั่งแสดงเวลาวันเดือนปี. https://medium.com/@kp0853953/date-command-in-linux-528a090792c
+  * The Linux Documentation Project. (n.d.). date(1). https://man7.org/linux/man-pages/man1/date.1.html
+* `dd`
+  * Saixiii. (2017, May 9). dd - คำสั่ง backup ข้อมูลใน harddisk. https://man7.org/linux/man-pages/man1/dd.1.html
+  * The Linux Documentation Project. (n.d.). dd(1). https://man7.org/linux/man-pages/man1/dd.1.html
+* `df`
+  * Saixiii. (2017, May 9). df - คำสั่งแสดงข้อมูลพื้นที่ Disk ทั้งหมด. https://knowledge.broadcom.com/external/article/181064/how-to-monitor-percent-free-disk-space-o.html
+  * The Linux Documentation Project. (n.d.). df(1). https://man7.org/linux/man-pages/man1/df.1p.html
+* `dmesg`
+  * The Linux Documentation Project. (n.d.). dmesg(1). https://linux.die.net/man/1/dmesg
+* `echo`
+  * The Linux Documentation Project. (n.d.). echo(1). https://linux.die.net/man/1/echo
+  * Saixiii. (2017, May 9). echo - คำสั่งในการแสดงผลบนหน้าจอ screen. https://www.ionos.ca/digitalguide/server/configuration/linux-echo-command/
+* `false`
+  * The Linux Documentation Project. (n.d.). false(1). https://man7.org/linux/man-pages/man1/false.1.html
+  * Michael Kerrisk (2023, November 03). false(1) - Linux manual page. https://www.commandlinux.com/man-page/man1/
+* `hostname`
+  * Saixiii. (2017, May 9). hostname - คำสั่งใช้แสดง hostname ของเครื่อง. https://phoenixnap.com/kb/linux-hostname-command
+  * The Linux Documentation Project. (n.d.). hostname(1). https://man7.org/linux/man-pages/man1/hostname.1.html
+* `kill`
+  * Saixiii. (2017, May 9). kill - คำสั่งส่งสัญญาณไปยัง process. https://tonylixu.medium.com/linux-kill-command-aefb2fff46b7
+  * The Linux Documentation Project. (n.d.). kill(1). https://man7.org/linux/man-pages/man1/kill.1.html
+* `ln`
+  * The Linux Documentation Project. (n.d.). ln(1). https://linux.die.net/man/1/ln: https://linux.die.net/man/1/ln
+  * Saixiii. (2017, May 9). ln - คำสั่งสร้าง link ไปยัง file หรือ directory. https://saixiii.com/ln-linux-command/: https://saixiii.com/ln-linux-command/
+* `login`
+  * The Linux Documentation Project. (n.d.). login(1). https://linux.die.net/man/1/login: https://linux.die.net/man/1/login
+* `ls`
+  * Saixiii. (2017, May 9). ls - คำสั่งแสดงรายการไฟล์และโฟลเดอร์. https://saixiii.com/ls-linux-command/: https://saixiii.com/ls-linux-command/
+  * The Linux Documentation Project. (n.d.). ls(1). https://linux.die.net/man/1/ls: https://linux.die.net/man/1/ls
+* `mkdir`
+  * The Linux Documentation Project. (n.d.). mkdir(1). https://linux.die.net/man/1/mkdir: https://linux.die.net/man/1/mkdir
+  * Saixiii. (2017, May 9). mkdir - คำสั่งสร้าง directory ใหม่. https://saixiii.com/mkdir-linux-command/: https://saixiii.com/mkdir-linux-command/
+* `mknod`
+  * The Linux Documentation Project. (n.d.). mknod(1). https://linux.die.net/man/1/mknod: https://linux.die.net/man/1/mknod
+  * IBM. (2015, October 19). mknod command. https://www.ibm.com/docs/en/aix/7.2?topic=m-mknod-command: https://www.ibm.com/docs/en/aix/7.2?topic=m-mknod-command
+* `more`
+  * The Linux Documentation Project. (n.d.). more(1). https://linux.die.net/man/1/more: https://linux.die.net/man/1/more
+  * Saixiii. (2017, May 9). more - คำสั่งแสดงผลข้อมูลทีละหน้า. https://saixiii.com/more-linux-command/: https://saixiii.com/more-linux-command/
+* `mount`
+  * Saixiii. (2017, May 9). mount - คำสั่ง mount file system. https://saixiii.com/mount-linux-command/: https://saixiii.com/mount-linux-command/
+  * The Linux Documentation Project. (n.d.). mount(8). https://linux.die.net/man/8/mount: https://linux.die.net/man/8/mount
+* `mv`
+  * The Linux Documentation Project. (n.d.). mv(1). https://linux.die.net/man/1/mv: https://linux.die.net/man/1/mv
+  * Saixiii. (2017, May 9). mv - คำสั่งย้ายไฟล์หรือเปลี่ยนชื่อไฟล์. https://saixiii.com/mv-linux-command/: https://saixiii.com/mv-linux-command/
+* `ps`
+  * Saixiii. (2017, May 9). ps - คำสั่งแสดงสถานะ process ที่กำลังทำงานอยู่. https://saixiii.com/ps-linux-command/: https://saixiii.com/ps-linux-command/
+  * The Linux Documentation Project. (n.d.). ps(1). https://linux.die.net/man/1/ps: https://linux.die.net/man/1/ps
+* `pwd`
+  * The Linux Documentation Project. (n.d.). pwd(1). https://linux.die.net/man/1/pwd: https://linux.die.net/man/1/pwd
+  * Saixiii. (2017, May 9). pwd - คำสั่งแสดงตำแหน่งของ directory ปัจจุบัน. https://saixiii.com/pwd-linux-command/: https://saixiii.com/pwd-linux-command/
+* `rm`
+  * Saixiii. (2017, May 9). rm - คำสั่งลบไฟล์. https://saixiii.com/rm-linux-command/: https://saixiii.com/rm-linux-command/
+  * The Linux Documentation Project. (n.d.). rm(1). https://linux.die.net/man/1/rm: https://linux.die.net/man/1/rm
+* `rmdir`
+  * The Linux Documentation Project. (n.d.). rmdir(1). https://linux.die.net/man/1/rmdir: https://linux.die.net/man/1/rmdir
+  * Saixiii. (2017, May 9). rmdir - คำสั่งลบ directory ว่าง. https://saixiii.com/rmdir-linux-command/: https://saixiii.com/rmdir-linux-command/
+* `sed`
+  * Saixiii. (2017, May 9). sed - คำสั่งแก้ไข file แบบ stream editor. https://saixiii.com/sed-linux-command/: https://saixiii.com/sed-linux-command/
+  * The Linux Documentation Project. (n.d.). sed(1). https://linux.die.net/man/1/sed: https://linux.die.net/man/1/sed
+* `sh`
+  * The Linux Documentation Project. (n.d.). sh(1). https://linux.die.net/man/1/sh: https://linux.die.net/man/1/sh
+  * IBM. (2021, February 16). sh shell command. https://www.ibm.com/docs/pl/aix/7.1?topic=s-sh-command: https://www.ibm.com/docs/pl/aix/7.1?topic=s-sh-command
+* `stty`
+  * The Linux Documentation Project. (n.d.). stty(1). https://linux.die.net/man/1/stty: https://linux.die.net/man/1/stty
+* `su`
+  * Saixiii. (2017, May 9). su - คำสั่งเปลี่ยนเป็น user อื่น. https://saixiii.com/su-linux-command/: https://saixiii.com/su-linux-command/
+  * The Linux Documentation Project. (n.d.). su(1). https://linux.die.net/man/1/su: https://linux.die.net/man/1/su
+* `sync`
+  * The Linux Documentation Project. (n.d.). sync(8). https://linux.die.net/man/8/sync: https://linux.die.net/man/8/sync
+  * Computer Hope. (n.d.). sync unix command. https://www.computerhope.com/unix/sync.htm: https://www.computerhope.com/unix/sync.htm

@@ -82,7 +82,37 @@ sdb      8:16   0  3.6T  0 disk             TOSHIBA HDWD240 7191S4G5S5HH
 &nbsp;&nbsp;&nbsp;&nbsp;`fdisk` เป็นโปรแกรม Text User Interface ที่ใช้สำหรับการสร้างและจัดการ Partition Table โดย
 รองรับ Partition Table แบบ GPT, MBR, Sun, SGI และ BSD
 
-&nbsp;&nbsp;&nbsp;&nbsp;Block Device สามารถแบ่งออกเป็น Logical Disk ตั้งแต่หนึ่งดิสก์ขึ้นไป เรียกว่า Partition การแบ่งนี้จะถูกบันทึกไว้ใน Partition Table ซึ่งโดยทั่วไปจะอยู่ที่เซกเตอร์ 0 ของดิสก์ (ใน BSD จะเรียกว่า "disk slices" และ "disklabel")
+&nbsp;&nbsp;&nbsp;&nbsp;Block Device สามารถแบ่งออกเป็น Logical Disk ตั้งแต่หนึ่งดิสก์ขึ้นไป เรียกว่า Partition การแบ่งนี้จะถูกบันทึกไว้ใน Partition Table ซึ่งโดยทั่วไปจะอยู่ที่เซกเตอร์ 0 ของดิสก์
+### วิธีใช้งาน
+พิมพ์คำสั่ง `sudo fdisk [device]` โดยแทนที่ device ด้วยชื่ออุปกรณ์ฮาร์ดไดร์ฟ ตัวอย่าง: `/dev/sda` หรือ `/dev/hda`
+```
+Welcome to fdisk (util-linux 2.37.2).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+Command (m for help):
+```
+โดย คำสั่ง `p` จะแสดงข้อมูลของ Partition นั้น ๆ
+```
+Help:
+Disk /dev/sda: 35 GiB, 37580963840 bytes, 73400320 sectors
+Disk model: VBOX HARDDISK
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: D06EAB77-C679-8744-A5EE-9B9BECBEABFA
+
+Device     Start      End  Sectors Size Type
+/dev/sda1   2048 73400286 73398239  35G Linux filesystem
+```
+คำสั่งต่างที่ใช้ทำงาทั่วไปมีดังรนี้
+* `p` - แสดง Partition Table ปัจจุบัน
+* `n` - สร้าง Partition ใหม่
+* `d` - ลบ Partition
+* `q` - ออกโดยไม่บันทึกการเปลี่ยนแปลง
+* `w` - บันทึกการเปลี่ยนแปลงในต Partition Table และออก
+
 <hr />
 
 ### `mkfs` - build a Linux filesystem
@@ -90,6 +120,7 @@ sdb      8:16   0  3.6T  0 disk             TOSHIBA HDWD240 7191S4G5S5HH
 
 ## อ้างอิงจาก
 * https://tldp.org/HOWTO/SCSI-2.4-HOWTO/rawdev.html
+* https://tldp.org/HOWTO/Partition/fdisk_partitioning.html
 * https://docs.oracle.com/cd/A83908_02/NT816EE/DOC/nt.816/a73025/ch3.htm
 * https://man7.org/linux/man-pages/man8/lsblk.8.html
 * https://man7.org/linux/man-pages/man8/fdisk.8.html
