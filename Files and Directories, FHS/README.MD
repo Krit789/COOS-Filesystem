@@ -448,7 +448,6 @@ chown :lazyboy SHE
 หรือสามารถเขียน
 ```
 chown User02 :lazyboy SHE
-
 ```
 ## `cp`
 ```
@@ -682,9 +681,7 @@ mv [option] -t <directory> <source>
 ต้องการนำ file1 ไปเก็บที่ directory test และเปลี่ยนชื่อเป็น file0 จากนั้นย้าย test ไปที่ temp
 ```
 mv file1 test/.
-
 mv file1 file0
-
 mv test /tmp
 ```
 ## `ps`
@@ -741,7 +738,6 @@ sed [option] {script-only-if-no-other-script} [input-file]
 ```
 sed G file1
 ```
----
 ## `sh`
 ```
 sh [option] [file.sh]
@@ -753,7 +749,6 @@ sh [option] [file.sh]
 sh file.sh
 sh
 ```
----
 ## `stty`
 ```
 stty [-F DEVICE | --file=DEVICE] [SETTING]
@@ -764,7 +759,6 @@ stty [-F DEVICE | --file=DEVICE] [SETTING]
 ```
 stty -echo
 ```
----
 ## `su`
 ```
 su [option] [userid]
@@ -778,7 +772,6 @@ su - Jake
 login root
 su
 ```
----
 ## `sync`
 ```
 sync [target1] [target2] ...
@@ -834,12 +827,10 @@ Directory คือ ที่เก็บข้อมูลที่สามา
 
 
 ## Local domain sockets
-
 Socket คือ การเชื่อมต่อระหว่างกระบวนการที่ช่วยให้สามารถ สื่อสารได้อย่างถูกต้อง UNIX กำหนด Socket หลายประเภท ซึ่งส่วนใหญ่เกี่ยวข้องกับเครือข่าย Local domain sockets สามารถเข้าถึงได้จากโฮสต์ในเครื่องเท่านั้น และถูกอ้างอิงผ่าน object file system แทนที่จะเป็น พอร์ตเครือข่าย บางครั้ง ทั้งสองก็รู้จักกัน เป็น “UNIX domain sockets” Syslog และ X Window System เป็นตัวอย่างของสิ่งอำนวยความสะดวกมาตรฐานที่ใช้ Local domain sockets แต่ยังมีอีกมากมาย รวมถึง database และ app server.<br> Local domain sockets ถูกสร้างขึ้นด้วยการเรียกระบบ Socket และลบออกด้วยคำสั่ง rm หรือ การเรียกระบบยกเลิกการเชื่อมโยง เมื่อไม่มีผู้ใช้อีกต่อไป
 
 
 ## Named pipes
-
 เช่นเดียวกับ Local domain sockets, pipe ที่มีชื่อ มีการสื่อสารระหว่างสองกระบวนการที่ทำงานบนโฮสต์เดียวกัน มีชื่อเรียกอีกอย่างว่า “file FIFO” (เช่นเดียวกับ financial accounting, FIFO ย่อมาจากวลี “เข้าก่อน ออกก่อน”) คุณสามารถสร้าง pipe name ด้วย mknod และลบออกด้วย rm pipe ที่มีชื่อและ Local domain sockets มีจุดประสงค์ที่คล้ายกันS
 
 
@@ -850,7 +841,9 @@ pathname ที่จัดเก็บเป็นเนื้อหาขอ�
 เป็นการอ้างอิงตามชื่อ.เนื่องจาก "Symbolic links" สามารถมี path ที่กำหนดเองได้ จึงสามารถอ้างถึงไฟล์บนระบบไฟล์อื่นหรือไฟล์ที่ไม่มีอยู่จริงได้ "Symbolic links" ยังสามารถสร้าง loop ได้
 
 
- # References
+# References
+* Siever, E., Figgins, S., Love, R., & Robbins, A. (2009). Linux in a nutshell (6th ed.). O'Reilly Media, Inc.
+* Nemeth, E., Snyder, G., Hein, T., & Seebass, S. (2017). UNIX and Linux system administration handbook (5th ed.). Addison-Wesley
 * Red Hat, Inc. (n.d.). GRUB (Grand Unified Bootloader) [Thai]. Retrieved from https://access.redhat.com/documentation/th-th/red_hat_enterprise_linux/5/html/installation_guide/s1-grub-whatis
 * Oracle. (n.d.). About Devices - Oracle Linux Documentation - 6.5. Retrieved from https://docs.oracle.com/en/operating-systems/oracle-linux/6/admin/ol_about_devices.html
 * Saixiii. (n.d.). Saixiii. Retrieved from https://saixiii.com
@@ -858,5 +851,3 @@ pathname ที่จัดเก็บเป็นเนื้อหาขอ�
 * IBM. (n.d.). ibm.com. Retrieved from https://www.ibm.com
 * The Linux Documentation Project. (n.d.). The Linux File-System Hierarchy. Retrieved from https://tldp.org/LDP/Linux-Filesystem-Hierarchy/Linux-Filesystem-Hierarchy.pdf
 * Red Hat, Inc. (n.d.). Linking to Linux Explained. Retrieved from https://www.redhat.com/sysadmin/linking-linux-explained
-* Siever, E., Figgins, S., Love, R., & Robbins, A. (2009). Linux in a nutshell (6th ed.). O'Reilly Media, Inc.
-* Nemeth, E., Snyder, G., Hein, T., & Seebass, S. (2017). UNIX and Linux system administration handbook (5th ed.). Addison-Wesley.red_hat_enterprise_linux/5/html/installation_guide/s1-grub-whatis

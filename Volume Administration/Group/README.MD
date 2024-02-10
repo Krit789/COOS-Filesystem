@@ -485,9 +485,9 @@ mount /dev/<ชื่อ Logical volume> /mnt/<ชื่อ mount point>
 
 ## Reference
 
-- [https://www.javatpoint.com/linux-file-ownership](https://www.javatpoint.com/linux-file-ownership)
-- [https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/logical_volume_manager_administration/vg_admin](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/logical_volume_manager_administration/vg_admin)
-- [http://imeenick.blogspot.com/2012/01/logical-volume-management-lvm.html](http://imeenick.blogspot.com/2012/01/logical-volume-management-lvm.html)
-- [https://medium.com/@nareerat.prr/what-is-lvm-24ae24322eff](https://medium.com/@nareerat.prr/what-is-lvm-24ae24322eff)
-- [https://www.idn.id/lvm-logical-volume-manager/](https://www.idn.id/lvm-logical-volume-manager/)
+* Javatpoint. (n.d.). Linux file ownership. Retrieved from https://www.javatpoint.com/linux-file-ownership
+* Red Hat. (n.d.). Volume group administration. Retrieved from https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/logical_volume_manager_administration/vg_admin
+* Imeenick. (2012, January 1). Logical volume management (LVM). Retrieved from http://imeenick.blogspot.com/2012/01/logical-volume-management-lvm.html
+* Nareerat, P. (2018, February 13). What is LVM. Medium. Retrieved from https://medium.com/@nareerat.prr/what-is-lvm-24ae24322eff
+* IDN. (n.d.). LVM - Logical Volume Manager. Retrieved from https://www.idn.id/lvm-logical-volume-manager/
 
